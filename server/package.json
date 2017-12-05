@@ -1,0 +1,17 @@
+{
+  "name": "movie-seatch",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "ts-node ./src/server.ts"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.52",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.1"
+  }
+}
