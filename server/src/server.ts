@@ -9,5 +9,5 @@ app.get("/", (request, response) => {
 });
 
 app.listen(port, () => {
-    console.log('Portal is up');
+    console.log('Listening');
 });
