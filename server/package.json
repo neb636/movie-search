@@ -1,16 +1,20 @@
 {
-  "name": "movie-seatch",
+  "name": "movie-search",
   "version": "0.0.1",
   "scripts": {
-    "dev": "ts-node ./src/server.ts"
+    "watch": "nodemon -e ts -w ./src -x npm run watch:serve",
+    "watch:serve": "ts-node --inspect ./src/server.ts"
   },
   "dependencies": {
+    "@types/express": "^4.0.39",
     "axios": "^0.17.1",
     "cors": "^2.8.4",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0"
   },
   "devDependencies": {
     "@types/node": "^8.0.52",
+    "nodemon": "^1.12.5",
     "ts-node": "^3.3.0",
     "typescript": "^2.6.1"
   }

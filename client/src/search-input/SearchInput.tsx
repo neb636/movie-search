@@ -3,30 +3,30 @@ import { observer, inject } from 'mobx-react';
 import './SearchInput.css';
 import { Store } from '../common/store';
 
-interface Props {
-    store: Store;
-}
+type SearchInputProps = { store?: Store };
 
 
-@inject("Store")
+@inject("store")
 @observer
-class SearchInput extends React.Component<Props, any> {
+class SearchInput extends React.Component<SearchInputProps, {}> {
 
-    handleChange = (event: any) => {
-        this.props.store.setSearchTerm(event.target.value);
-    };
+    constructor(props: SearchInputProps) {
+        super(props);
+    }
 
     render() {
         const { store } = this.props;
+
         return (
             <div className="SearchInput">
 
                 <input type="search"
                        className="SearchInput__input"
                        value={store.searchTerm}
-                       onChange={this.handleChange}/>
+                       onChange={(event: any) => store.setSearchTerm(event.target.value)}/>
 
-                <button className="SearchInput__button">Search</button>
+                <button onClick={() => store.search()}
+                        className="SearchInput__button">Search</button>
             </div>
         );
     }
