@@ -1,12 +1,34 @@
 import axios from 'axios';
-import { SPOTIFY_API } from '../common/constants';
+import { SPOTIFY_API, SPOTIFY_CLIENT_ID, SPOTIFY_SECRET } from '../common/constants';
 import { SongList } from './songs-interfaces';
-import { authenticate } from '../common/services/spotify-service';
+
+
+// Should we store this for a while instead of using on every request?
+export async function getAuthToken(): Promise<string> {
+    const encodedAuth = (new Buffer(SPOTIFY_CLIENT_ID + ':' + SPOTIFY_SECRET).toString('base64'));
+
+    const response = await axios({
+        method: 'post',
+        url: 'https://accounts.spotify.com/api/token',
+        headers: {
+            'Authorization': `Basic ${encodedAuth}`
+        },
+        params: {
+            grant_type: 'client_credentials'
+        }
+    });
+
+    return response.data.access_token;
+}
 
 export async function searchSongs(searchTerm: string): Promise<SongList> {
 
-    authenticate();
+    const token = await getAuthToken();
 
-    const songsList = await axios.get(`${SPOTIFY_API}search?q=${searchTerm}type=artist,track`);
+    const songsList = await axios.get(`${SPOTIFY_API}search?q=${searchTerm}type=artist,track`, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
     return songsList;
 }

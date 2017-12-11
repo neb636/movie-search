@@ -9,16 +9,14 @@ app.get("/", (request, response) => {
     response.send('hello world');
 });
 
-app.post(SPOTIFY_CALLBACK_PATH, (request, response) => {
-    console.log(request);
-});
-
 app.listen(PORT, () => {
     console.log('Listening');
 });
 
 
 function errorHandler (err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
+    console.log(err);
+
     res.status(500);
     res.render('error', { error: err });
 }
