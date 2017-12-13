@@ -1,7 +1,8 @@
 
 
 .SearchInput {
-  margin-top: 50px;
+  float: left;
+  margin-top: 20px;
 }
 
 .SearchInput__input {

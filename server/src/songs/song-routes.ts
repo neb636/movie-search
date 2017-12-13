@@ -11,7 +11,7 @@ export async function get(req: express.Request, res: express.Response, next: exp
         res.send(songsList);
     }
     catch (error) {
-        console.log(error.data)
+        console.log(error.response.data)
         next(error);
     }
 }

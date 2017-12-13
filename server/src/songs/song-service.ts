@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { SPOTIFY_API, SPOTIFY_CLIENT_ID, SPOTIFY_SECRET } from '../common/constants';
-import { SongList } from './songs-interfaces';
+import { SongList } from '../../../shared-interfaces/interfaces';
+import { mapSongList } from './song-mapper';
 
 
 // Should we store this for a while instead of using on every request?
@@ -21,14 +22,20 @@ export async function getAuthToken(): Promise<string> {
     return response.data.access_token;
 }
 
+
 export async function searchSongs(searchTerm: string): Promise<SongList> {
 
     const token = await getAuthToken();
 
-    const songsList = await axios.get(`${SPOTIFY_API}search?q=${searchTerm}type=artist,track`, {
+    const { data } = await axios.get(`${SPOTIFY_API}search?`, {
+        params: {
+            q: searchTerm,
+            type: "artist,track"
+        },
         headers: {
             'Authorization': `Bearer ${token}`
         }
     });
-    return songsList;
+
+    return mapSongList(data);
 }

@@ -1,0 +1,13 @@
+
+
+.Header {
+    float: left;
+    width: 100%;
+    padding: 5px 50px;
+}
+
+
+.Header__logo-name {
+    float: left;
+    margin-right: 30px;
+}

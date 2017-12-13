@@ -1,0 +1,13 @@
+
+.SearchList {
+    width: 1300px;
+    margin: 0 auto;
+}
+
+
+.SearchList__list-wrapper {
+    float: left;
+    margin: 20px 0;
+    width: 100%;
+    padding: 0 50px;
+}

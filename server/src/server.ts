@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as cors from 'cors';
-import { PORT, SPOTIFY_CALLBACK_PATH } from './common/constants';
+import { PORT } from './common/constants';
 import songsRoutes from './songs/song-routes';
 
 const app = express();

@@ -1,0 +1,36 @@
+
+.TrackCard {
+    float: left;
+    width: 300px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.TrackCard__image {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.TrackCard__image:hover {
+    opacity: .4;
+}
+
+.TrackCard__meta-data {
+    float: left;
+    width: 100%;
+}
+
+
+.TrackCard__meta-data-title {
+    float: left;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+
+.TrackCard__meta-data-content {
+    float: left;
+}

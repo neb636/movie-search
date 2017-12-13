@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 import './SearchInput.css';
-import { Store } from '../common/store';
+import { Store } from '../../common/store';
 
 type SearchInputProps = { store?: Store };
 
@@ -14,20 +14,25 @@ class SearchInput extends React.Component<SearchInputProps, {}> {
         super(props);
     }
 
+    handleSubmit(event: any): void {
+        event.preventDefault();
+        this.props.store.search();
+    }
+
     render() {
         const { store } = this.props;
 
         return (
-            <div className="SearchInput">
+            <form onSubmit={(event: any) => this.handleSubmit(event)}
+                  className="SearchInput">
 
                 <input type="search"
                        className="SearchInput__input"
                        value={store.searchTerm}
                        onChange={(event: any) => store.setSearchTerm(event.target.value)}/>
 
-                <button onClick={() => store.search()}
-                        className="SearchInput__button">Search</button>
-            </div>
+                <button className="SearchInput__button">Search</button>
+            </form>
         );
     }
 }
