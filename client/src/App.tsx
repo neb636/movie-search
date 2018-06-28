@@ -1,16 +1,13 @@
 import * as React from 'react';
-import SearchList from './SearchList/SearchList';
+import {BrowserRouter, Route} from 'react-router-dom';
 import Header from './Header/Header';
+import Home from './Home/Home';
 import './App.css';
 
 type Props = {};
 
-
 class App extends React.Component<Props, {}> {
 
-    constructor(props: Props) {
-        super(props);
-    }
 
     render() {
 
@@ -18,7 +15,9 @@ class App extends React.Component<Props, {}> {
             <div className="App">
                 <Header></Header>
 
-                <SearchList></SearchList>
+                <BrowserRouter>
+                    <Route exact path="/" component={Home} />
+                </BrowserRouter>
             </div>
         );
     }

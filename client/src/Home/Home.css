@@ -1,0 +1,38 @@
+
+
+.Home {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    float: left;
+}
+
+.Home__background {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    float: left;
+}
+
+.Home__background-image {
+    background-image: url("popcorn.jpg");
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.Home__background-blinder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #29516D;
+    opacity: .6;
+}

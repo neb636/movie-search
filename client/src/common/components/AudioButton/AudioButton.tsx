@@ -9,10 +9,7 @@ class AudioButton extends React.Component<Props, State> {
 
     audio: any;
 
-    constructor(props: Props) {
-        super(props);
-        this.state = { playing: false };
-    }
+    state = { playing: false };
 
     toggleAudio() {
 

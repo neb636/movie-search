@@ -10,10 +10,6 @@ type SearchInputProps = { store?: Store };
 @observer
 class SearchInput extends React.Component<SearchInputProps, {}> {
 
-    constructor(props: SearchInputProps) {
-        super(props);
-    }
-
     handleSubmit(event: any): void {
         event.preventDefault();
         this.props.store.search();

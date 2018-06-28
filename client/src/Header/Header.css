@@ -3,11 +3,18 @@
 .Header {
     float: left;
     width: 100%;
-    padding: 5px 50px;
+    padding: 15px 50px;
+    background-color: #29516D;
+    overflow: hidden;
 }
 
 
 .Header__logo-name {
     float: left;
     margin-right: 30px;
+    font-size: 25px;
+}
+
+.Header__logo {
+    width: 200px;
 }
