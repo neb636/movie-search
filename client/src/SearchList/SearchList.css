@@ -1,13 +1,20 @@
 
 .SearchList {
-    width: 1300px;
-    margin: 0 auto;
+    padding: 0 175px;
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
 }
 
-
-.SearchList__list-wrapper {
-    float: left;
-    margin: 20px 0;
+.SearchList__list-list-wrapper {
     width: 100%;
-    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.SearchList__section-title {
+    font-size: 22px;
+    color: #6f7485;
+    margin-left: 3px;
 }

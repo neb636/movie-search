@@ -1,0 +1,8 @@
+app:
+  version: 0.1
+  base-url: http://d58e88f4.ngrok.io
+  client-origin: http://localhost:3000
+  spotify-credentials:
+    client-id: ${SPOTIFY_CLIENT_ID}
+    client-secret: ${SPOTIFY_CLIENT_SECRET}
+

@@ -1,18 +1,10 @@
-import { SpotifySearchResponse, SpotifyArtistItem, SpotifyTrackItem } from './song-interfaces';
-import { SongList, ArtistItem, TrackItem } from '../../../shared-interfaces/interfaces';
+import {ArtistItem, SpotifyArtistItem, SpotifyTrackItem, TrackItem} from "../interfaces/interfaces";
 
 
-export function mapSongList(searchResponse: SpotifySearchResponse): SongList {
-    const artists = searchResponse.artists.items.map(artist => mapArtist(artist));
-    const tracks = searchResponse.tracks.items.map(artist => mapTrack(artist));
-
-    return { artists, tracks };
-}
-
-
-export function mapArtist(artist: SpotifyArtistItem): ArtistItem {
+export const mapArtist = (artist: SpotifyArtistItem): ArtistItem => {
     const { genres, href, id, name,type, uri } = artist;
-    let images, mainImage;
+    let images: string[] = [];
+    let mainImage;
 
     if (artist.images && artist.images.length) {
         images = artist.images.map(image => image.url);
@@ -29,10 +21,18 @@ export function mapArtist(artist: SpotifyArtistItem): ArtistItem {
         type,
         uri
     };
-}
+};
 
+export const mapArtists = (artists: SpotifyArtistItem[] | null) => {
 
-export function mapTrack(track: SpotifyTrackItem): TrackItem {
+    if (artists) {
+        return artists.map(artist => mapArtist(artist));
+    }
+
+    return [];
+};
+
+export const mapTrack = (track: SpotifyTrackItem): TrackItem => {
     const { album, artists, duration_ms, href, id, name, preview_url, type, uri } = track;
     const albumName = album.name;
     const artistName = artists[0].name;
@@ -55,4 +55,12 @@ export function mapTrack(track: SpotifyTrackItem): TrackItem {
         type,
         uri
     };
-}
+};
+
+export const mapTracks = (tracks: SpotifyTrackItem[]): TrackItem[] => {
+    if (tracks) {
+        return tracks.map(track => mapTrack(track));
+    }
+
+    return [];
+};

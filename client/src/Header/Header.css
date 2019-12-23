@@ -1,20 +1,13 @@
 
 
 .Header {
-    float: left;
-    width: 100%;
-    padding: 15px 50px;
-    background-color: #29516D;
-    overflow: hidden;
+    display: flex;
+    padding: 15px 30px;
+    margin-bottom: 40px;
 }
 
-
-.Header__logo-name {
-    float: left;
-    margin-right: 30px;
-    font-size: 25px;
-}
 
 .Header__logo {
-    width: 200px;
+    width: 40px;
+    height: 40px;
 }

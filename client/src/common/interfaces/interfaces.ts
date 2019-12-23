@@ -1,5 +1,4 @@
 
-
 export interface SpotifyImage {
     height: number;
     url: string;
@@ -94,4 +93,49 @@ export interface SpotifySearchResponse {
         previous?: string;
         total: number;
     };
+}
+
+export interface ArtistItemResponse {
+    externalUrls: any;
+    generes: string[];
+    href: string;
+    images: { url: string; height: number; width: number; }[];
+    id: string;
+    name: string;
+    type: string;
+    uri: string;
+    followers: any;
+}
+
+export interface TrackItemResponse {
+
+}
+
+export interface ArtistItem {
+    genres: string[];
+    href: string;
+    id: string;
+    mainImage?: string;
+    images: string[];
+    name: string;
+    type: string;
+    uri: string;
+}
+
+export interface TrackItem {
+    albumName: string;
+    artistName: string;
+    mainImage?: string;
+    duration: number;
+    href: string;
+    id: string;
+    name: string;
+    previewUrl: string;
+    type: string;
+    uri: string;
+}
+
+export interface SongList {
+    artists: ArtistItem[];
+    tracks: TrackItem[];
 }
