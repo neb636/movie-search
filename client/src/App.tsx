@@ -4,23 +4,17 @@ import Header from './Header/Header';
 import Home from './Home/Home';
 import './App.css';
 
-type Props = {};
+function App() {
 
-class App extends React.Component<Props, {}> {
+    return (
+        <div className="App">
+            <Header />
 
-
-    render() {
-
-        return (
-            <div className="App">
-                <Header></Header>
-
-                <BrowserRouter>
-                    <Route exact path="/" component={Home} />
-                </BrowserRouter>
-            </div>
-        );
-    }
+            <BrowserRouter>
+                <Route exact path="/" component={Home} />
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;

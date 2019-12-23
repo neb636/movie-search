@@ -1,32 +1,21 @@
 import * as React from 'react';
-import { observer, inject } from 'mobx-react';
 import './ArtistCard.css';
-import { Store } from '../../common/store';
-import { ArtistItem } from '../../../../shared-interfaces/interfaces';
+import {ArtistItem} from "../../common/interfaces/interfaces";
 
-type Props = { artist: ArtistItem; store?: Store; };
+type Props = { artist: ArtistItem; };
 
 
-class ArtistCard extends React.Component<Props, {}> {
+const ArtistCard = ({ artist }: Props) => {
+    const { mainImage, name, type } = artist;
 
-    constructor(props: Props) {
-        super(props);
-    }
+    return (
+        <div className='ArtistCard'>
 
-    render() {
-        const { store, artist } = this.props;
-        const { mainImage, name, type } = artist;
+            <img className='ArtistCard__image' src={mainImage} />
 
-        return (
-            <div className='ArtistCard'>
-
-                <img className='ArtistCard__image'
-                     src={mainImage} />
-
-                <h5 className='ArtistCard__name'>{name}</h5>
-            </div>
-        );
-    }
-}
+            <h5 className='ArtistCard__name'>{name}</h5>
+        </div>
+    );
+};
 
 export default ArtistCard;

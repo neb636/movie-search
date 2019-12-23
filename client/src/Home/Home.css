@@ -2,37 +2,35 @@
 
 .Home {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
-    float: left;
-}
-
-.Home__background {
     width: 100%;
-    height: 100vh;
-    position: absolute;
-    left: 0;
-    right: 0;
-
-    float: left;
 }
 
-.Home__background-image {
-    background-image: url("popcorn.jpg");
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.Home__name-logo-wrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
-.Home__background-blinder {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #29516D;
-    opacity: .6;
+.Home__movie-monster-text {
+    color: #428cff;
+    font-size: 70px;
+    margin-left: 35px;
+    font-family: 'Passion One', cursive;
+}
+
+.Home__logo {
+    width: 90px;
+    height: 90px;
+}
+
+.Home__sub-text {
+    color: #838bab;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
 }

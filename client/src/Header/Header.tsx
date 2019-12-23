@@ -1,12 +1,13 @@
 import * as React from 'react';
 import './Header.css';
+import TemporaryLogo from "../common/components/TemporaryLogo/TemporaryLogo";
 
 
 function Header() {
 
     return (
         <div className="Header">
-            <div className="Header__logo-name">Movie Monster</div>
+            <TemporaryLogo className="Header__logo" />
         </div>
     );
 }

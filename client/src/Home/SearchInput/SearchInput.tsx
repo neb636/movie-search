@@ -1,36 +1,48 @@
 import * as React from 'react';
-import { observer, inject } from 'mobx-react';
 import './SearchInput.css';
-import { Store } from '../../common/store';
+import {ChangeEvent, useEffect, useRef, useState} from "react";
+import {FormEvent} from "react";
+import {FormEventHandler} from "react";
 
-type SearchInputProps = { store?: Store };
+type Props = {
+    querySearchTerm: (term: string) => Promise<void>;
+};
 
 
-@inject("store")
-@observer
-class SearchInput extends React.Component<SearchInputProps, {}> {
+const SearchInput = ({ querySearchTerm }: Props) => {
+    const [searchTerm, setSearchTerm] = useState('');
+    const inputRef = useRef<HTMLInputElement>(null);
 
-    handleSubmit(event: any): void {
-        event.preventDefault();
-        this.props.store.search();
-    }
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
 
-    render() {
-        const { store } = this.props;
+    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        querySearchTerm(searchTerm);
+    };
 
-        return (
-            <form onSubmit={(event: any) => this.handleSubmit(event)}
-                  className="SearchInput">
+    return (
+        <form className="SearchInput" onSubmit={onSubmit}>
 
-                <input type="search"
-                       className="SearchInput__input"
-                       value={store.searchTerm}
-                       onChange={(event: any) => store.setSearchTerm(event.target.value)}/>
+            <input
+                ref={inputRef}
+                type="search"
+                className="SearchInput__input"
+                value={searchTerm}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchTerm(event.target.value)}
+            />
 
-                <button className="SearchInput__button">Search</button>
-            </form>
-        );
-    }
-}
+            <button
+                className="SearchInput__button"
+                onClick={() => querySearchTerm(searchTerm)}
+            >
+                Search
+            </button>
+        </form>
+    );
+};
 
 export default SearchInput;
