@@ -4,7 +4,7 @@ import Header from './Header/Header';
 import Home from './Home/Home';
 import './App.css';
 
-function App() {
+const App = () => {
 
     return (
         <div className="App">
@@ -15,6 +15,6 @@ function App() {
             </BrowserRouter>
         </div>
     );
-}
+};
 
 export default App;

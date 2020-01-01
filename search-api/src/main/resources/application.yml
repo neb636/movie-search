@@ -5,4 +5,8 @@ app:
   spotify-credentials:
     client-id: ${SPOTIFY_CLIENT_ID}
     client-secret: ${SPOTIFY_CLIENT_SECRET}
+  tunefind-credentials:
+    username: ${TUNEFIND_USERNAME}
+    password: ${TUNEFIND_PASSWORD}
+    api-endpoint: ${TUNEFIND_API_ENDPOINT}
 

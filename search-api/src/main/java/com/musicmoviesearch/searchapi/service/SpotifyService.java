@@ -5,8 +5,10 @@ import com.wrapper.spotify.SpotifyApi;
 import com.wrapper.spotify.exceptions.SpotifyWebApiException;
 import com.wrapper.spotify.model_objects.credentials.ClientCredentials;
 import com.wrapper.spotify.model_objects.special.SearchResult;
+import com.wrapper.spotify.model_objects.specification.Track;
 import com.wrapper.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
 import com.wrapper.spotify.requests.data.search.SearchItemRequest;
+import com.wrapper.spotify.requests.data.tracks.GetTrackRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -43,10 +45,20 @@ public class SpotifyService {
     }
 
     public SearchResult searchQuery(String query, String type) {
-        final SearchItemRequest getSongRequest = spotifyApi.searchItem(query, type).build();
+        final SearchItemRequest getSearchResultsRequest = spotifyApi.searchItem(query, type).build();
 
         try {
-            return getSongRequest.execute();
+            return getSearchResultsRequest.execute();
+        } catch (IOException | SpotifyWebApiException e) {
+            throw new SearchRequestException(e.getMessage());
+        }
+    }
+
+    public Track getTrack(String id) {
+        final GetTrackRequest getTrackRequest = spotifyApi.getTrack(id).build();
+
+        try {
+            return getTrackRequest.execute();
         } catch (IOException | SpotifyWebApiException e) {
             throw new SearchRequestException(e.getMessage());
         }

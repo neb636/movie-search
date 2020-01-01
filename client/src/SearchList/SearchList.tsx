@@ -12,7 +12,7 @@ type Props = {
 };
 
 const SearchList = (props: Props) => {
-    const { searchResult, isSearching, currentSearchedTerm} = props;
+    const { searchResult, isSearching, currentSearchedTerm } = props;
 
     if (currentSearchedTerm) {
 
@@ -22,21 +22,21 @@ const SearchList = (props: Props) => {
                 { isSearching && <Spinner /> }
 
                 {!isSearching && searchResult.artists &&
-                <div className='SearchList__list-wrapper'>
+                    <div className='SearchList__list-wrapper'>
 
-                    <h3 className="SearchList__section-title">Artists</h3>
+                        <h3 className="SearchList__section-title">Artists</h3>
 
-                    {!searchResult.artists.length &&
-                    <span>Unfortunately there are no artist results for {currentSearchedTerm}</span>
-                    }
+                        {!searchResult.artists.length &&
+                        <span>Unfortunately there are no artist results for {currentSearchedTerm}</span>
+                        }
 
-                    <div className='SearchList__list-list-wrapper'>
+                        <div className='SearchList__list-list-wrapper'>
 
-                        {searchResult.artists.map((artist) =>
-                            <ArtistCard artist={artist} />
-                        )}
+                            {searchResult.artists.map((artist) =>
+                                <ArtistCard artist={artist} />
+                            )}
+                        </div>
                     </div>
-                </div>
                 }
 
                 {!isSearching && searchResult.tracks &&
@@ -45,12 +45,12 @@ const SearchList = (props: Props) => {
                         <h3>Tracks</h3>
 
                         {!searchResult.tracks.length &&
-                        <span>Unfortunately there are no track results for {currentSearchedTerm}</span>
+                            <span>Unfortunately there are no track results for {currentSearchedTerm}</span>
                         }
 
                         <div className='SearchList__list-list-wrapper'>
                             {searchResult.tracks.map((track) =>
-                                <TrackCard track={track} />
+                                <TrackCard track={track} key={track.id} />
                             )}
                         </div>
                     </div>
