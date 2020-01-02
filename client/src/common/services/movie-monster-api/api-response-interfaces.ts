@@ -1,4 +1,5 @@
 
+
 export interface SpotifyImage {
     height: number;
     url: string;
@@ -14,9 +15,9 @@ export interface ExternalUrls {
 }
 
 
-export interface Album {
+export interface AlbumResponse {
     album_type: string;
-    artists: SpotifyArtist[];
+    artists: SpotifyArtistResponse[];
     available_markets: string[];
     external_urls: ExternalUrls;
     href: string;
@@ -28,7 +29,7 @@ export interface Album {
 }
 
 
-export interface SpotifyArtist {
+export interface SpotifyArtistResponse {
     external_urls: ExternalUrls;
     href: string;
     id: string;
@@ -38,9 +39,9 @@ export interface SpotifyArtist {
 }
 
 
-export interface SpotifyTrackItem {
-    album: Album;
-    artists: SpotifyArtist[];
+export interface SpotifyTrackItemResponse {
+    album: AlbumResponse;
+    artists: SpotifyArtistResponse[];
     available_markets: string[];
     disc_number: number;
     duration_ms: number;
@@ -57,7 +58,7 @@ export interface SpotifyTrackItem {
     uri: string;
 }
 
-export interface SpotifyArtistItem {
+export interface SpotifyArtistItemResponse {
     external_urls: ExternalUrls;
     followers: {
         href?: any;
@@ -77,7 +78,7 @@ export interface SpotifyArtistItem {
 export interface SpotifySearchResponse {
     artists: {
         href: string;
-        items: SpotifyArtistItem[];
+        items: SpotifyArtistItemResponse[];
         limit: number;
         offset: number;
         next?: number;
@@ -86,56 +87,11 @@ export interface SpotifySearchResponse {
     };
     tracks: {
         href: string;
-        items: SpotifyTrackItem[];
+        items: SpotifyTrackItemResponse[];
         limit: number;
         offset: number;
         next?: number;
         previous?: string;
         total: number;
     };
-}
-
-export interface ArtistItemResponse {
-    externalUrls: any;
-    generes: string[];
-    href: string;
-    images: { url: string; height: number; width: number; }[];
-    id: string;
-    name: string;
-    type: string;
-    uri: string;
-    followers: any;
-}
-
-export interface TrackItemResponse {
-
-}
-
-export interface ArtistItem {
-    genres: string[];
-    href: string;
-    id: string;
-    mainImage?: string;
-    images: string[];
-    name: string;
-    type: string;
-    uri: string;
-}
-
-export interface TrackItem {
-    albumName: string;
-    artistName: string;
-    mainImage?: string;
-    duration: number;
-    href: string;
-    id: string;
-    name: string;
-    previewUrl: string;
-    type: string;
-    uri: string;
-}
-
-export interface SongList {
-    artists: ArtistItem[];
-    tracks: TrackItem[];
 }

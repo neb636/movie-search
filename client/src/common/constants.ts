@@ -1,3 +1,3 @@
 
 
-export const BACKEND_URL = "http://localhost:8080";
+export const API_BASE = 'http://localhost:8080/v1/';

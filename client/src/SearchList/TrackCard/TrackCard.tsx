@@ -1,23 +1,21 @@
 import * as React from 'react';
 import './TrackCard.css';
 import AudioButton from '../../common/components/AudioButton/AudioButton';
-import {TrackItem} from "../../common/interfaces/interfaces";
-import axios from "axios";
-import {BACKEND_URL} from "../../common/constants";
+import {TrackItem} from "../../state/music/interfaces";
+import MovieMonsterApi from "../../common/services/movie-monster-api/movie-monster-api";
 
 type Props = { track: TrackItem; };
 
 const TrackCard = ({ track }: Props) => {
     const { mainImage, name, albumName, artistName, previewUrl, id } = track;
 
-    const getTrack = async () => {
-        const { data } = await axios.get(`${BACKEND_URL}/v1/search/movie-recommendations/${id}`);
-
-        console.log(data);
+    const fetchMovieInfo = async () => {
+        const res = await MovieMonsterApi.movie.getMovieListBySpotifyTrackId({ spotifyTrackId: id });
+        console.log(res);
     };
 
     return (
-        <div className='TrackCard' onClick={getTrack}>
+        <div className='TrackCard' onClick={fetchMovieInfo}>
 
             { previewUrl &&
                 <AudioButton source={previewUrl} />

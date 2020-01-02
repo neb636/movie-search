@@ -1,6 +1,6 @@
 package com.musicmoviesearch.searchapi.service;
 
-import com.musicmoviesearch.searchapi.domain.TunefindSong;
+import com.musicmoviesearch.searchapi.domain.tunefind.TunefindSong;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;

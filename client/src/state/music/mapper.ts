@@ -1,7 +1,11 @@
-import {ArtistItem, SpotifyArtistItem, SpotifyTrackItem, TrackItem} from "../interfaces/interfaces";
+import {ArtistItem, TrackItem} from "./interfaces";
+import {
+    SpotifyArtistItemResponse,
+    SpotifyTrackItemResponse
+} from "../../common/services/movie-monster-api/api-response-interfaces";
 
 
-export const mapArtist = (artist: SpotifyArtistItem): ArtistItem => {
+export const mapArtist = (artist: SpotifyArtistItemResponse): ArtistItem => {
     const { genres, href, id, name,type, uri } = artist;
     let images: string[] = [];
     let mainImage;
@@ -23,7 +27,7 @@ export const mapArtist = (artist: SpotifyArtistItem): ArtistItem => {
     };
 };
 
-export const mapArtists = (artists: SpotifyArtistItem[] | null) => {
+export const mapArtists = (artists: SpotifyArtistItemResponse[] | undefined) => {
 
     if (artists) {
         return artists.map(artist => mapArtist(artist));
@@ -32,7 +36,7 @@ export const mapArtists = (artists: SpotifyArtistItem[] | null) => {
     return [];
 };
 
-export const mapTrack = (track: SpotifyTrackItem): TrackItem => {
+export const mapTrack = (track: SpotifyTrackItemResponse): TrackItem => {
     const { album, artists, duration_ms, href, id, name, preview_url, type, uri } = track;
     const albumName = album.name;
     const artistName = artists[0].name;
@@ -57,7 +61,7 @@ export const mapTrack = (track: SpotifyTrackItem): TrackItem => {
     };
 };
 
-export const mapTracks = (tracks: SpotifyTrackItem[]): TrackItem[] => {
+export const mapTracks = (tracks: SpotifyTrackItemResponse[] | undefined): TrackItem[] => {
     if (tracks) {
         return tracks.map(track => mapTrack(track));
     }

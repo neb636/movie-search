@@ -3,16 +3,13 @@ import './SearchList.css';
 import ArtistCard from './ArtistCard/ArtistCard'
 import TrackCard from './TrackCard/TrackCard';
 import Spinner from '../common/components/Spinner/Spinner';
-import {SongList} from "../common/interfaces/interfaces";
+import {useSelector} from "react-redux";
+import {StoreState} from "../state/store-interfaces";
 
-type Props = {
-    searchResult: SongList;
-    isSearching: boolean;
-    currentSearchedTerm: string;
-};
-
-const SearchList = (props: Props) => {
-    const { searchResult, isSearching, currentSearchedTerm } = props;
+const SearchList = () => {
+    const isSearching = useSelector((state: StoreState) => state.music.isSearching);
+    const currentSearchedTerm = useSelector((state: StoreState) => state.music.currentSearchedTerm);
+    const searchResults = useSelector((state: StoreState) => state.music.searchResults);
 
     if (currentSearchedTerm) {
 
@@ -21,35 +18,35 @@ const SearchList = (props: Props) => {
 
                 { isSearching && <Spinner /> }
 
-                {!isSearching && searchResult.artists &&
+                {!isSearching && searchResults.artists &&
                     <div className='SearchList__list-wrapper'>
 
                         <h3 className="SearchList__section-title">Artists</h3>
 
-                        {!searchResult.artists.length &&
+                        {!searchResults.artists.length &&
                         <span>Unfortunately there are no artist results for {currentSearchedTerm}</span>
                         }
 
                         <div className='SearchList__list-list-wrapper'>
 
-                            {searchResult.artists.map((artist) =>
+                            {searchResults.artists.map((artist) =>
                                 <ArtistCard artist={artist} />
                             )}
                         </div>
                     </div>
                 }
 
-                {!isSearching && searchResult.tracks &&
+                {!isSearching && searchResults.tracks &&
                     <div className='SearchList__list-wrapper'>
 
                         <h3>Tracks</h3>
 
-                        {!searchResult.tracks.length &&
+                        {!searchResults.tracks.length &&
                             <span>Unfortunately there are no track results for {currentSearchedTerm}</span>
                         }
 
                         <div className='SearchList__list-list-wrapper'>
-                            {searchResult.tracks.map((track) =>
+                            {searchResults.tracks.map((track) =>
                                 <TrackCard track={track} key={track.id} />
                             )}
                         </div>

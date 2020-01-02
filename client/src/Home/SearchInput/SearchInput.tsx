@@ -2,14 +2,11 @@ import * as React from 'react';
 import './SearchInput.css';
 import {ChangeEvent, useEffect, useRef, useState} from "react";
 import {FormEvent} from "react";
-import {FormEventHandler} from "react";
-
-type Props = {
-    querySearchTerm: (term: string) => Promise<void>;
-};
+import {useMusicActions} from "../../state/music/actions";
 
 
-const SearchInput = ({ querySearchTerm }: Props) => {
+const SearchInput = () => {
+    const { querySearchTerm } = useMusicActions();
     const [searchTerm, setSearchTerm] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
 

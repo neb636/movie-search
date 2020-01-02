@@ -2,11 +2,9 @@ import * as React from 'react';
 import './Home.css';
 import SearchInput from './SearchInput/SearchInput';
 import SearchList from '../SearchList/SearchList';
-import {useSearchHandlers} from "../common/hooks/use-search-handlers";
 import TemporaryLogo from "../common/components/TemporaryLogo/TemporaryLogo";
 
-function Home() {
-    const { searchResult, querySearchTerm, isSearching, currentSearchedTerm } = useSearchHandlers();
+const Home = () => {
 
     return (
         <div className='Home'>
@@ -19,15 +17,11 @@ function Home() {
                 Search for movies by your favorite music
             </div>
 
-            <SearchInput querySearchTerm={querySearchTerm} />
+            <SearchInput />
 
-            <SearchList
-                isSearching={isSearching}
-                searchResult={searchResult}
-                currentSearchedTerm={currentSearchedTerm}
-            />
+            <SearchList />
         </div>
     );
-}
+};
 
 export default Home;
