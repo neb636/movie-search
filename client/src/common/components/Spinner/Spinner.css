@@ -24,13 +24,7 @@
     animation-timing-function: linear;
     height: 30px;
     width: 30px;
-    border: 8px solid #ffffff;
+    border: 8px solid #d2e4ff;
     border-right-color: transparent;
     border-radius: 50%;
-    display: inline-block;
-    position: absolute;
-    top: 150px;
-    right: 0;
-    left: 50%;
-    margin: -15px 0 -15px;
 }

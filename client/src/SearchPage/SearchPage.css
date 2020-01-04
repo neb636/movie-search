@@ -1,6 +1,6 @@
 
 
-.Home {
+.SearchPage {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,26 +8,26 @@
     width: 100%;
 }
 
-.Home__name-logo-wrapper {
+.SearchPage__name-logo-wrapper {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
 }
 
-.Home__movie-monster-text {
+.SearchPage__movie-monster-text {
     color: #428cff;
     font-size: 70px;
     margin-left: 35px;
     font-family: 'Passion One', cursive;
 }
 
-.Home__logo {
+.SearchPage__logo {
     width: 90px;
     height: 90px;
 }
 
-.Home__sub-text {
+.SearchPage__sub-text {
     color: #838bab;
     font-size: 25px;
     display: flex;

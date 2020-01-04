@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "outDir": "build/dist",
     "module": "esnext",
     "target": "ES2016",
@@ -15,7 +15,13 @@
     "noImplicitReturns": false,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "paths": {
+      "@common/*": ["common/*"],
+      "@state/*": ["state/*"],
+      "@search-page/*": ["SearchPage/*"],
+      "@routes/*": ["routes/*"]
+    }
   },
   "exclude": [
     "node_modules",

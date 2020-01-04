@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './ArtistCard.css';
-import {ArtistItem} from "../../state/music/interfaces";
+import { ArtistItem } from '@state/music/interfaces';
 
 type Props = { artist: ArtistItem; };
 

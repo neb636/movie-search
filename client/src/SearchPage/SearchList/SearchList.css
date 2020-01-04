@@ -4,6 +4,7 @@
     margin-top: 55px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .SearchList__list-list-wrapper {
@@ -17,4 +18,8 @@
     font-size: 22px;
     color: #6f7485;
     margin-left: 3px;
+}
+
+.SearchList__spinner {
+    margin-top: 20px;
 }

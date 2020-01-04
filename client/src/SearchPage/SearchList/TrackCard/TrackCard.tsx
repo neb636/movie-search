@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './TrackCard.css';
-import AudioButton from '../../common/components/AudioButton/AudioButton';
-import {TrackItem} from "../../state/music/interfaces";
-import MovieMonsterApi from "../../common/services/movie-monster-api/movie-monster-api";
+import {TrackItem} from '@state/music/interfaces';
+import MovieMonsterApi from '@common/services/movie-monster-api/movie-monster-api';
+import AudioButton from '@common/components/AudioButton/AudioButton';
 
 type Props = { track: TrackItem; };
 

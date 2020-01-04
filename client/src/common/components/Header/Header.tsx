@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './Header.css';
-import TemporaryLogo from "../common/components/TemporaryLogo/TemporaryLogo";
+import TemporaryLogo from '@common/components/TemporaryLogo/TemporaryLogo';
 
 
 function Header() {

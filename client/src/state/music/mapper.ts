@@ -1,8 +1,8 @@
-import {ArtistItem, TrackItem} from "./interfaces";
+import {ArtistItem, TrackItem} from './interfaces';
 import {
     SpotifyArtistItemResponse,
     SpotifyTrackItemResponse
-} from "../../common/services/movie-monster-api/api-response-interfaces";
+} from '@common/services/movie-monster-api/api-response-interfaces';
 
 
 export const mapArtist = (artist: SpotifyArtistItemResponse): ArtistItem => {

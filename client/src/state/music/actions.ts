@@ -1,7 +1,7 @@
-import {ArtistItem, TrackItem} from "./interfaces";
-import {mapArtists, mapTracks} from "./mapper";
-import MovieMonsterApi from "../../common/services/movie-monster-api/movie-monster-api";
-import {useDispatch} from "react-redux";
+import {ArtistItem, TrackItem} from './interfaces';
+import {mapArtists, mapTracks} from './mapper';
+import MovieMonsterApi from '@common/services/movie-monster-api/movie-monster-api';
+import {useDispatch} from 'react-redux';
 import { Dispatch } from 'redux';
 
 
