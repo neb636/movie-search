@@ -22,7 +22,8 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "prettier": "prettier --write 'src/**/*.{css,ts,tsx}'"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
@@ -37,6 +38,7 @@
     "@types/redux": "^3.6.0",
     "@types/redux-actions": "^2.6.1",
     "@types/redux-thunk": "^2.1.0",
+    "prettier": "1.19.1",
     "typescript": "^3.7.4"
   },
   "browserslist": [
@@ -44,5 +46,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "prettier": {
+    "printWidth": 140,
+    "singleQuote": true,
+    "endOfLine": "lf"
+  }
 }

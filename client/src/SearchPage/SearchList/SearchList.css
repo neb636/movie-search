@@ -1,25 +1,24 @@
-
 .SearchList {
-    padding: 0 175px;
-    margin-top: 55px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding: 0 175px;
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .SearchList__list-list-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .SearchList__section-title {
-    font-size: 22px;
-    color: #6f7485;
-    margin-left: 3px;
+  font-size: 22px;
+  color: #6f7485;
+  margin-left: 3px;
 }
 
 .SearchList__spinner {
-    margin-top: 20px;
+  margin-top: 20px;
 }

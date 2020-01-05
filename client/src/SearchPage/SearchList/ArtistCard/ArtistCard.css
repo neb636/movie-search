@@ -1,24 +1,22 @@
-
-
 .ArtistCard {
-    width: 150px;
-    text-align: center;
-    cursor: pointer;
-    margin-bottom: 10px;
+  width: 150px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .ArtistCard__image:hover {
-    opacity: .4;
+  opacity: 0.4;
 }
 
 .ArtistCard__image {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
-    overflow: hidden;
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .ArtistCard__name {
-    margin-top: 10px;
-    font-size: 15px;
+  margin-top: 10px;
+  font-size: 15px;
 }

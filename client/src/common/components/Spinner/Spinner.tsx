@@ -3,14 +3,14 @@ import classnames from 'classnames';
 import './Spinner.css';
 
 type Props = {
-    className?: string;
+  className?: string;
 };
 
 const Spinner = (props: Props) => {
-    const { className } = props;
-    const classList = classnames('Spinner', className);
+  const { className } = props;
+  const classList = classnames('Spinner', className);
 
-    return <div className={classList} />;
+  return <div className={classList} />;
 };
 
 export default Spinner;
