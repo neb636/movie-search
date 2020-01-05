@@ -12,9 +12,7 @@ import { Routes } from '@routes/routes';
 const useHandleSearchQueryParamOnLoad = () => {
   const { querySearchTerm } = useMusicActions();
   const location = useLocation();
-  const searchTerm = queryString.parse(location.search)[
-    Routes.search.queryParams.searchTerm
-  ] as string | undefined;
+  const searchTerm = queryString.parse(location.search)[Routes.search.queryParams.searchTerm] as string | undefined;
 
   useEffect(() => {
     console.log('FIRST MOUNT');
@@ -35,9 +33,7 @@ const SearchPage = () => {
         <div className="SearchPage__movie-monster-text">Movie Monster</div>
       </div>
 
-      <div className="SearchPage__sub-text">
-        Search for movies by your favorite music
-      </div>
+      <div className="SearchPage__sub-text">Search for movies by your favorite music</div>
 
       <SearchInput />
 

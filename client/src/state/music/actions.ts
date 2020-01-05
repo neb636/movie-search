@@ -16,23 +16,19 @@ export type SetSearchResultsAction = ReturnType<typeof setSearchResults>;
 
 const setSearchTerm = (searchTerm: string) => ({
   type: SET_SEARCH_TERM,
-  searchTerm,
+  searchTerm
 });
 
 const setIsSearching = (isSearching: boolean) => ({
   type: SET_IS_SEARCHING,
-  isSearching,
+  isSearching
 });
 
-const setSearchResults = (
-  currentSearchedTerm: string,
-  artists: ArtistItem[],
-  tracks: TrackItem[],
-) => ({
+const setSearchResults = (currentSearchedTerm: string, artists: ArtistItem[], tracks: TrackItem[]) => ({
   type: SET_SEARCH_RESULTS,
   currentSearchedTerm,
   artists,
-  tracks,
+  tracks
 });
 
 const querySearchTerm = (term: string) => async (dispatch: Dispatch) => {
@@ -51,6 +47,6 @@ export const useMusicActions = () => {
 
   return {
     querySearchTerm: (term: string) => dispatch(querySearchTerm(term)),
-    setSearchTerm: (term: string) => dispatch(setSearchTerm(term)),
+    setSearchTerm: (term: string) => dispatch(setSearchTerm(term))
   };
 };

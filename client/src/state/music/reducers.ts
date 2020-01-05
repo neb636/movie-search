@@ -6,7 +6,7 @@ import {
   SET_SEARCH_TERM,
   SetIsSearchingAction,
   SetSearchResultsAction,
-  SetSearchTermAction,
+  SetSearchTermAction
 } from './actions';
 
 const initialState: MusicState = {
@@ -15,26 +15,20 @@ const initialState: MusicState = {
   currentSearchedTerm: '',
   searchResults: {
     artists: [],
-    tracks: [],
-  },
+    tracks: []
+  }
 };
 
-const setSearchTerm = (
-  state: MusicState,
-  action: SetSearchTermAction,
-): MusicState => {
+const setSearchTerm = (state: MusicState, action: SetSearchTermAction): MusicState => {
   const { searchTerm } = action;
 
   return {
     ...state,
-    searchTerm,
+    searchTerm
   };
 };
 
-const setSearchResults = (
-  state: MusicState,
-  action: SetSearchResultsAction,
-): MusicState => {
+const setSearchResults = (state: MusicState, action: SetSearchResultsAction): MusicState => {
   const { artists, tracks, currentSearchedTerm } = action;
 
   return {
@@ -43,27 +37,24 @@ const setSearchResults = (
     currentSearchedTerm,
     searchResults: {
       artists,
-      tracks,
-    },
+      tracks
+    }
   };
 };
 
-const setIsSearching = (
-  state: MusicState,
-  action: SetIsSearchingAction,
-): MusicState => {
+const setIsSearching = (state: MusicState, action: SetIsSearchingAction): MusicState => {
   const { isSearching } = action;
 
   return {
     ...state,
-    isSearching,
+    isSearching
   };
 };
 
 const mappedReducers = {
   [SET_SEARCH_TERM]: setSearchTerm,
   [SET_SEARCH_RESULTS]: setSearchResults,
-  [SET_IS_SEARCHING]: setIsSearching,
+  [SET_IS_SEARCHING]: setIsSearching
 };
 
 const musicState: any = handleActions(mappedReducers as any, initialState);

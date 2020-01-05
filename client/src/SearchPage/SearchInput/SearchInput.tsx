@@ -21,9 +21,7 @@ const useInputRef = () => {
 
 const useSearchTerm = () => {
   const location = useLocation();
-  const initialSearchTerm = queryString.parse(location.search)[
-    Routes.search.queryParams.searchTerm
-  ] as string | undefined;
+  const initialSearchTerm = queryString.parse(location.search)[Routes.search.queryParams.searchTerm] as string | undefined;
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm || '');
 
   return { searchTerm, setSearchTerm };
@@ -41,7 +39,7 @@ const SearchInput = () => {
 
     history.push({
       pathname: Routes.search.getLink(),
-      search,
+      search
     });
     querySearchTerm(searchTerm);
   };
@@ -53,15 +51,10 @@ const SearchInput = () => {
         type="search"
         className="SearchInput__input"
         value={searchTerm}
-        onChange={(event: ChangeEvent<HTMLInputElement>) =>
-          setSearchTerm(event.target.value)
-        }
+        onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchTerm(event.target.value)}
       />
 
-      <button
-        className="SearchInput__button"
-        onClick={() => querySearchTerm(searchTerm)}
-      >
+      <button className="SearchInput__button" onClick={() => querySearchTerm(searchTerm)}>
         Search
       </button>
     </form>

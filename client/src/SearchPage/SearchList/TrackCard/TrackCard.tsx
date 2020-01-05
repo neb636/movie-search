@@ -11,7 +11,7 @@ const TrackCard = ({ track }: Props) => {
 
   const fetchMovieInfo = async () => {
     const res = await MovieMonsterApi.movie.getMovieListBySpotifyTrackId({
-      spotifyTrackId: id,
+      spotifyTrackId: id
     });
     console.log(res);
   };

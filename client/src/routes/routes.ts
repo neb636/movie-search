@@ -1,7 +1,7 @@
 import SearchPage from '@search-page/SearchPage';
 
 const searchQueryParams = {
-  searchTerm: 'searchTerm',
+  searchTerm: 'searchTerm'
 };
 
 const Routes = {
@@ -9,13 +9,13 @@ const Routes = {
     path: '/search',
     component: SearchPage,
     getLink: () => `/search`,
-    queryParams: searchQueryParams,
+    queryParams: searchQueryParams
   },
   movieRecommendations: {
     path: '/movie-recommendations',
     component: SearchPage,
-    getLink: () => '/movie-recommendations',
-  },
+    getLink: () => '/movie-recommendations'
+  }
 };
 
 export { Routes };

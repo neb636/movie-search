@@ -10,52 +10,34 @@ export const createRestApiUtil = (config: ConfigObject) => {
 
   const axiosInstance = axios.create({
     baseURL: baseUrl,
-    timeout: timeout || 1000,
+    timeout: timeout || 1000
   });
 
   return {
-    get: async <T = unknown>(
-      url: string,
-      config?: AxiosRequestConfig,
-    ): Promise<T> => {
+    get: async <T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T> => {
       const response = await axiosInstance.get(url, config);
 
       return response.data;
     },
-    post: async <T = unknown>(
-      url: string,
-      data?: { [key: string]: any },
-      config?: AxiosRequestConfig,
-    ): Promise<T> => {
+    post: async <T = unknown>(url: string, data?: { [key: string]: any }, config?: AxiosRequestConfig): Promise<T> => {
       const response = await axiosInstance.post(url, data, config);
 
       return response.data;
     },
-    put: async <T = unknown>(
-      url: string,
-      data?: { [key: string]: any },
-      config?: AxiosRequestConfig,
-    ): Promise<T> => {
+    put: async <T = unknown>(url: string, data?: { [key: string]: any }, config?: AxiosRequestConfig): Promise<T> => {
       const response = await axiosInstance.put(url, data, config);
 
       return response.data;
     },
-    patch: async <T = unknown>(
-      url: string,
-      data?: { [key: string]: any },
-      config?: AxiosRequestConfig,
-    ): Promise<T> => {
+    patch: async <T = unknown>(url: string, data?: { [key: string]: any }, config?: AxiosRequestConfig): Promise<T> => {
       const response = await axiosInstance.patch(url, data, config);
 
       return response.data;
     },
-    delete: async <T = unknown>(
-      url: string,
-      config?: AxiosRequestConfig,
-    ): Promise<T> => {
+    delete: async <T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T> => {
       const response = await axiosInstance.delete(url, config);
 
       return response.data;
-    },
+    }
   };
 };

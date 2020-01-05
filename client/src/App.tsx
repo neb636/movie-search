@@ -14,11 +14,7 @@ const App = () => {
           <Header />
 
           <Switch>
-            <Route
-              exact={true}
-              path={Routes.search.path}
-              component={Routes.search.component}
-            />
+            <Route exact={true} path={Routes.search.path} component={Routes.search.component} />
 
             <Redirect exact={true} from="/" to={Routes.search.getLink()} />
           </Switch>

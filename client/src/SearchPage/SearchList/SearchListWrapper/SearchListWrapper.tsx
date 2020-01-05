@@ -16,11 +16,7 @@ const SearchListWrapper = (props: Props) => {
     <div className="SearchListWrapper">
       <div className="SearchListWrapper__title">{title}</div>
 
-      {!hasResults && (
-        <span className="SearchListWrapper__no-results">
-          {noResultsMessage}
-        </span>
-      )}
+      {!hasResults && <span className="SearchListWrapper__no-results">{noResultsMessage}</span>}
 
       <div className="SearchList__list-list-wrapper">{children}</div>
     </div>
