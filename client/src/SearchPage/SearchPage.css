@@ -1,36 +1,34 @@
-
-
 .SearchPage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
 }
 
 .SearchPage__name-logo-wrapper {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .SearchPage__movie-monster-text {
-    color: #428cff;
-    font-size: 70px;
-    margin-left: 35px;
-    font-family: 'Passion One', cursive;
+  color: #428cff;
+  font-size: 70px;
+  margin-left: 35px;
+  font-family: 'Passion One', cursive;
 }
 
 .SearchPage__logo {
-    width: 90px;
-    height: 90px;
+  width: 90px;
+  height: 90px;
 }
 
 .SearchPage__sub-text {
-    color: #838bab;
-    font-size: 25px;
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
+  color: #838bab;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }

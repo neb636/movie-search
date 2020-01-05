@@ -1,5 +1,5 @@
-import {MusicState} from "./music/interfaces";
+import { MusicState } from './music/interfaces';
 
 export type StoreState = {
-    music: MusicState;
+  music: MusicState;
 };
