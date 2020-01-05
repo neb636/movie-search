@@ -1,33 +1,31 @@
 .TrackCard {
-  float: left;
-  width: 300px;
-  text-align: center;
+  width: 225px;
   cursor: pointer;
-  position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
+  padding: 0 15px;
+}
+
+.TrackCard:hover .TrackCard__image {
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
 }
 
 .TrackCard__image {
-  width: 150px;
-  height: 150px;
+  width: 225px;
+  height: 225px;
+  border-radius: 10px;
   overflow: hidden;
+  transition-property: color, background-color, box-shadow, transform, -webkit-box-shadow, -webkit-transform;
+  transition-duration: 0.15s;
 }
 
-.TrackCard__image:hover {
-  opacity: 0.4;
+.TrackCard__artist-name {
+  color: #a9a9a9;
+  margin-top: 5px;
 }
 
-.TrackCard__meta-data {
-  float: left;
-  width: 100%;
-}
-
-.TrackCard__meta-data-title {
-  float: left;
-  font-weight: bold;
-  margin-right: 15px;
-}
-
-.TrackCard__meta-data-content {
-  float: left;
+.TrackCard__track-name {
+  color: #413f58;
+  font-size: 16px;
+  margin-top: 5px;
 }

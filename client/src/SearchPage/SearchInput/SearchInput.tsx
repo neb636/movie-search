@@ -5,6 +5,7 @@ import { FormEvent } from 'react';
 import { useMusicActions } from '@state/music/actions';
 import { useLocation, useHistory } from 'react-router-dom';
 import * as queryString from 'query-string';
+import classnames from 'classnames';
 import { Routes } from '@routes/routes';
 
 const useInputRef = () => {
@@ -32,6 +33,9 @@ const SearchInput = () => {
   const { searchTerm, setSearchTerm } = useSearchTerm();
   const { querySearchTerm } = useMusicActions();
   const inputRef = useInputRef();
+  const buttonClassList = classnames('SearchInput__button', {
+    'SearchInput--button-disabled': !searchTerm
+  });
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,7 +58,7 @@ const SearchInput = () => {
         onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchTerm(event.target.value)}
       />
 
-      <button className="SearchInput__button" onClick={() => querySearchTerm(searchTerm)}>
+      <button className={buttonClassList} onClick={() => querySearchTerm(searchTerm)} disabled={!searchTerm}>
         Search
       </button>
     </form>

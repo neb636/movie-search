@@ -4,9 +4,11 @@ import {
   SET_IS_SEARCHING,
   SET_SEARCH_RESULTS,
   SET_SEARCH_TERM,
+  SET_SELECTED_TRACK,
   SetIsSearchingAction,
   SetSearchResultsAction,
-  SetSearchTermAction
+  SetSearchTermAction,
+  SetSelectedTrackAction
 } from './actions';
 
 const initialState: MusicState = {
@@ -51,10 +53,20 @@ const setIsSearching = (state: MusicState, action: SetIsSearchingAction): MusicS
   };
 };
 
+const setSelectedTrack = (state: MusicState, action: SetSelectedTrackAction): MusicState => {
+  const { track } = action;
+
+  return {
+    ...state,
+    selectedTrack: track
+  };
+};
+
 const mappedReducers = {
   [SET_SEARCH_TERM]: setSearchTerm,
   [SET_SEARCH_RESULTS]: setSearchResults,
-  [SET_IS_SEARCHING]: setIsSearching
+  [SET_IS_SEARCHING]: setIsSearching,
+  [SET_SELECTED_TRACK]: setSelectedTrack
 };
 
 const musicState: any = handleActions(mappedReducers as any, initialState);

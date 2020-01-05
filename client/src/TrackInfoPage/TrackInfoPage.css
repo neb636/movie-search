@@ -1,0 +1,16 @@
+.TrackInfoPage__image-fallback {
+  background-color: #dbdee8;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 600%;
+}
+
+.TrackInfoPage__track-image {
+  width: 450px;
+  height: 450px;
+  border-radius: 20px;
+}

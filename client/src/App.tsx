@@ -15,8 +15,9 @@ const App = () => {
 
           <Switch>
             <Route exact={true} path={Routes.search.path} component={Routes.search.component} />
+            <Route exact={true} path={Routes.track.path} component={Routes.track.component} />
 
-            <Redirect exact={true} from="/" to={Routes.search.getLink()} />
+            <Redirect to={Routes.search.getLink()} />
           </Switch>
         </BrowserRouter>
       </Provider>

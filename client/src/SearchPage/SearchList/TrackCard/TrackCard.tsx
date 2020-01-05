@@ -1,32 +1,22 @@
 import * as React from 'react';
 import './TrackCard.css';
 import { TrackItem } from '@state/music/interfaces';
-import MovieMonsterApi from '@common/services/movie-monster-api/movie-monster-api';
-import AudioButton from '@common/components/AudioButton/AudioButton';
+import { Routes } from '@routes/routes';
+import { useHistory } from 'react-router-dom';
 
 type Props = { track: TrackItem };
 
 const TrackCard = ({ track }: Props) => {
-  const { mainImage, name, albumName, artistName, previewUrl, id } = track;
-
-  const fetchMovieInfo = async () => {
-    const res = await MovieMonsterApi.movie.getMovieListBySpotifyTrackId({
-      spotifyTrackId: id
-    });
-    console.log(res);
-  };
+  const { mainImage, name, artistName, id } = track;
+  const history = useHistory();
 
   return (
-    <div className="TrackCard" onClick={fetchMovieInfo}>
-      {previewUrl && <AudioButton source={previewUrl} />}
-
-      <img className="TrackCard__image" src={mainImage} />
-
-      <h5>{name}</h5>
+    <div className="TrackCard" onClick={() => history.push(Routes.track.getLink(id))}>
+      <img className="TrackCard__image" src={mainImage} alt="Song Cover Photo" />
 
       <div className="TrackCard__meta-data">
-        <div className="TrackCard__meta-data-title">Album:</div>
-        <div className="TrackCard__meta-data-content">{albumName}</div>
+        <div className="TrackCard__artist-name">{artistName}</div>
+        <div className="TrackCard__track-name">{name}</div>
       </div>
     </div>
   );

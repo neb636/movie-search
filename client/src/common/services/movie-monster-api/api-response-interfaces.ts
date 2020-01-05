@@ -13,10 +13,10 @@ export interface ExternalUrls {
 }
 
 export interface AlbumResponse {
-  album_type: string;
+  albumType: string;
   artists: SpotifyArtistResponse[];
-  available_markets: string[];
-  external_urls: ExternalUrls;
+  availableMarkets: string[];
+  externalUrls: ExternalUrls;
   href: string;
   id: string;
   images: SpotifyImage[];
@@ -26,7 +26,7 @@ export interface AlbumResponse {
 }
 
 export interface SpotifyArtistResponse {
-  external_urls: ExternalUrls;
+  externalUrls: ExternalUrls;
   href: string;
   id: string;
   name: string;
@@ -37,24 +37,24 @@ export interface SpotifyArtistResponse {
 export interface SpotifyTrackItemResponse {
   album: AlbumResponse;
   artists: SpotifyArtistResponse[];
-  available_markets: string[];
-  disc_number: number;
-  duration_ms: number;
+  availableMarkets: string[];
+  discNumber: number;
+  durationMs: number;
   explicit: boolean;
-  external_ids: ExternalIds;
-  external_urls: ExternalUrls;
+  externalIds: ExternalIds;
+  externalUrls: ExternalUrls;
   href: string;
   id: string;
   name: string;
   popularity: number;
-  preview_url: string;
-  track_number: number;
+  previewUrl: string;
+  trackNumber: number;
   type: string;
   uri: string;
 }
 
 export interface SpotifyArtistItemResponse {
-  external_urls: ExternalUrls;
+  externalUrls: ExternalUrls;
   followers: {
     href?: any;
     total: number;

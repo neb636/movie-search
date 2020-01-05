@@ -32,7 +32,7 @@ export const mapArtists = (artists: SpotifyArtistItemResponse[] | undefined) => 
 };
 
 export const mapTrack = (track: SpotifyTrackItemResponse): TrackItem => {
-  const { album, artists, duration_ms, href, id, name, preview_url, type, uri } = track;
+  const { album, artists, durationMs, href, id, name, previewUrl, type, uri } = track;
   const albumName = album.name;
   const artistName = artists[0].name;
   let mainImage;
@@ -46,11 +46,11 @@ export const mapTrack = (track: SpotifyTrackItemResponse): TrackItem => {
     albumName,
     artistName,
     mainImage,
-    duration: duration_ms,
+    duration: durationMs,
     href,
     id,
     name,
-    previewUrl: preview_url,
+    previewUrl: previewUrl,
     type,
     uri
   };

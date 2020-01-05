@@ -32,4 +32,5 @@ export type MusicState = {
   currentSearchedTerm: string;
   searchTerm: string;
   searchResults: MusicSearchResults;
+  selectedTrack?: TrackItem;
 };

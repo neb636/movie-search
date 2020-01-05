@@ -10,16 +10,18 @@ import { useMusicActions } from '@state/music/actions';
 import { Routes } from '@routes/routes';
 
 const useHandleSearchQueryParamOnLoad = () => {
-  const { querySearchTerm } = useMusicActions();
+  const { querySearchTerm, setSearchTerm } = useMusicActions();
   const location = useLocation();
   const searchTerm = queryString.parse(location.search)[Routes.search.queryParams.searchTerm] as string | undefined;
 
   useEffect(() => {
-    console.log('FIRST MOUNT');
-
     if (searchTerm) {
       querySearchTerm(searchTerm);
     }
+
+    return () => {
+      setSearchTerm('');
+    };
   }, []);
 };
 

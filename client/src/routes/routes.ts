@@ -1,4 +1,5 @@
 import SearchPage from '@search-page/SearchPage';
+import TrackInfoPage from '@track-info-page/TrackInfoPage';
 
 const searchQueryParams = {
   searchTerm: 'searchTerm'
@@ -11,10 +12,10 @@ const Routes = {
     getLink: () => `/search`,
     queryParams: searchQueryParams
   },
-  movieRecommendations: {
-    path: '/movie-recommendations',
-    component: SearchPage,
-    getLink: () => '/movie-recommendations'
+  track: {
+    path: '/track/:spotifyTrackId',
+    component: TrackInfoPage,
+    getLink: (spotifyTrackId: string) => `/track/${spotifyTrackId}`
   }
 };
 

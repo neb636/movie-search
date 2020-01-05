@@ -10,6 +10,7 @@
     "jsx": "react",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
     "noImplicitAny": true,
     "noImplicitReturns": false,
@@ -20,6 +21,7 @@
       "@common/*": ["common/*"],
       "@state/*": ["state/*"],
       "@search-page/*": ["SearchPage/*"],
+      "@track-info-page/*": ["TrackInfoPage/*"],
       "@routes/*": ["routes/*"]
     }
   },
