@@ -48,8 +48,7 @@
     "not op_mini all"
   ],
   "prettier": {
-    "printWidth": 80,
-    "trailingComma": "all",
+    "printWidth": 140,
     "singleQuote": true,
     "endOfLine": "lf"
   }
