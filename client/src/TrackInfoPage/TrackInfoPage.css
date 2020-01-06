@@ -10,7 +10,23 @@
 }
 
 .TrackInfoPage__track-image {
-  width: 450px;
-  height: 450px;
+  width: 375px;
+  height: 375px;
   border-radius: 20px;
+}
+
+.TrackInfoPage__track-wrapper {
+  display: flex;
+}
+
+.TrackInfoPage__track-info {
+  margin-left: 40px;
+}
+
+.TrackInfoPage__track-name {
+  font-size: 30px;
+}
+
+.TrackInfoPage__track-by-wrapper {
+  margin-bottom: 10px;
 }

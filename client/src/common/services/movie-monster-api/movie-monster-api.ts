@@ -13,7 +13,7 @@ const MovieMonsterApi = {
       RestApiUtil.get<SpotifyTrackItemResponse>(`/music/track/${spotifyTrackId}`)
   },
   movie: {
-    getMovieListBySpotifyTrackId: ({ spotifyTrackId }: { spotifyTrackId: string }) => RestApiUtil.get(`/movie/${spotifyTrackId}`)
+    getMovieListBySpotifyTrackId: ({ spotifyTrackId }: { spotifyTrackId: string }) => RestApiUtil.get<any>(`/movie/${spotifyTrackId}`)
   }
 };
 
