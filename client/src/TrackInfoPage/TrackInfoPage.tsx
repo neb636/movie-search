@@ -25,15 +25,15 @@ const TrackInfoPage = () => {
   usePrimeState();
   const history = useHistory();
   const track = useSelector((state: StoreState) => state.music.selectedTrack);
-  const m = useSelector((state: StoreState) => state.movie.movieResults);
+  const movieResults = useSelector((state: StoreState) => state.movie.movieResults);
   const fallbackLetter = track?.name?.charAt(0) || '?';
 
-  const s = JSON.stringify(m);
+  const stringMovieResults = JSON.stringify(movieResults);
 
   if (track) {
     return (
       <div className="TrackInfoPage">
-        <BackCircleIcon onClick={() => history.goBack()} />
+        <BackCircleIcon className="TrackInfoPage__back-button" onClick={() => history.goBack()} />
         <div className="TrackInfoPage__track-wrapper">
           <ImageWithFallback
             className="TrackInfoPage__track-image"
@@ -56,7 +56,7 @@ const TrackInfoPage = () => {
           </div>
         </div>
 
-        <div>{s}</div>
+        <div>{stringMovieResults}</div>
       </div>
     );
   }

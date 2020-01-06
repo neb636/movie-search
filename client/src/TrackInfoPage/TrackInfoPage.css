@@ -17,6 +17,7 @@
 
 .TrackInfoPage__track-wrapper {
   display: flex;
+  margin-bottom: 30px;
 }
 
 .TrackInfoPage__track-info {
@@ -29,4 +30,10 @@
 
 .TrackInfoPage__track-by-wrapper {
   margin-bottom: 10px;
+}
+
+.TrackInfoPage__back-button {
+  position: relative;
+  left: -35px;
+  margin-bottom: 20px;
 }
