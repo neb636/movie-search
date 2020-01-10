@@ -16,6 +16,7 @@ const App = () => {
           <Switch>
             <Route exact={true} path={Routes.search.path} component={Routes.search.component} />
             <Route exact={true} path={Routes.track.path} component={Routes.track.component} />
+            <Route exact={true} path={Routes.artist.path} component={Routes.artist.component} />
 
             <Redirect to={Routes.search.getLink()} />
           </Switch>

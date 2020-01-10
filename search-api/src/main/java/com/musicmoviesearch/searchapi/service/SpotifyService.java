@@ -5,8 +5,13 @@ import com.wrapper.spotify.SpotifyApi;
 import com.wrapper.spotify.exceptions.SpotifyWebApiException;
 import com.wrapper.spotify.model_objects.credentials.ClientCredentials;
 import com.wrapper.spotify.model_objects.special.SearchResult;
+import com.wrapper.spotify.model_objects.specification.AlbumSimplified;
+import com.wrapper.spotify.model_objects.specification.Artist;
+import com.wrapper.spotify.model_objects.specification.Paging;
 import com.wrapper.spotify.model_objects.specification.Track;
 import com.wrapper.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
+import com.wrapper.spotify.requests.data.artists.GetArtistRequest;
+import com.wrapper.spotify.requests.data.artists.GetArtistsAlbumsRequest;
 import com.wrapper.spotify.requests.data.search.SearchItemRequest;
 import com.wrapper.spotify.requests.data.tracks.GetTrackRequest;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,6 +47,28 @@ public class SpotifyService {
 
         try {
             return getTrackRequest.execute();
+        } catch (IOException | SpotifyWebApiException e) {
+            throw new SearchRequestException(e.getMessage());
+        }
+    }
+
+    public Artist getArtist(String artistId) {
+        final SpotifyApi spotifyApi = getSpotifyClient();
+        final GetArtistRequest getArtistRequest = spotifyApi.getArtist(artistId).build();
+
+        try {
+            return getArtistRequest.execute();
+        } catch (IOException | SpotifyWebApiException e) {
+            throw new SearchRequestException(e.getMessage());
+        }
+    }
+
+    public Paging<AlbumSimplified> getArtistsAlbums(String artistId) {
+        final SpotifyApi spotifyApi = getSpotifyClient();
+        final GetArtistsAlbumsRequest getArtistsAlbums = spotifyApi.getArtistsAlbums(artistId).build();
+
+        try {
+            return getArtistsAlbums.execute();
         } catch (IOException | SpotifyWebApiException e) {
             throw new SearchRequestException(e.getMessage());
         }

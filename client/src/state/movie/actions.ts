@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
 import MovieMonsterApi from '@common/services/movie-monster-api/movie-monster-api';
-import { mapTrack } from '@state/music/mapper';
 
 const MOVIE_STATE = 'MOVIE_STATE';
 

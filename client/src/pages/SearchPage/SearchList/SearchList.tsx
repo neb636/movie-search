@@ -5,7 +5,7 @@ import TrackCard from './TrackCard/TrackCard';
 import Spinner from '@common/components/Spinner/Spinner';
 import { useSelector } from 'react-redux';
 import { StoreState } from '@state/store-interfaces';
-import SearchListWrapper from '@search-page/SearchList/SearchListWrapper/SearchListWrapper';
+import SearchListWrapper from '@pages/SearchPage/SearchList/SearchListWrapper/SearchListWrapper';
 
 const SearchList = () => {
   const isSearching = useSelector((state: StoreState) => state.music.isSearching);
