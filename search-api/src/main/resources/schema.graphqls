@@ -1,0 +1,43 @@
+
+type Query {
+  getTrack(id: String): Track
+  getArtist(id: String): Artist
+}
+
+type ExternalUrls {
+  key: String
+  value: String
+}
+
+type Followers {
+  href: String
+  total: Int
+}
+
+type Image {
+  height: Int
+  url: String!
+  width: Int
+}
+
+type Artist {
+  followers: Followers
+  genres: [String]
+  href: String
+  id: String!
+  name: String!
+  images: [Image]
+  popularity: Int
+  type: String
+  uri: String
+}
+
+type Track {
+  discNumber: Int
+  durationMs: Int
+  explicit: Boolean
+  id: String!
+  href: String
+  name: String!
+  previewUrl: String
+}
