@@ -13,12 +13,11 @@ export type TrackItem = {
   albumName: string;
   artistName: string;
   mainImage?: string;
-  duration: number;
+  duration?: number | null;
   href: string;
   id: string;
   name: string;
   previewUrl: string;
-  type: string;
   uri: string;
 };
 

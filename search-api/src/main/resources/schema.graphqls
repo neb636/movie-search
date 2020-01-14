@@ -2,6 +2,8 @@
 type Query {
   getTrack(id: String): Track
   getArtist(id: String): Artist
+#  getArtistsAlbums(id: String): AlbumSimplifiedPaging
+#  getSearchResults(query: String, type: String): SearchResult
 }
 
 type ExternalUrls {
@@ -15,29 +17,96 @@ type Followers {
 }
 
 type Image {
-  height: Int
   url: String!
-  width: Int
+  height: Int!
+  width: Int!
 }
 
 type Artist {
   followers: Followers
-  genres: [String]
-  href: String
+  genres: [String!]
+  href: String!
   id: String!
   name: String!
-  images: [Image]
+  images: [Image!]
   popularity: Int
-  type: String
-  uri: String
+  type: String!
+  uri: String!
+}
+
+type AlbumSimplified {
+  albumGroup: String
+  albumType: String
+  id: String!
+  href: String!
+  name: String!
+  images: [Image!]
 }
 
 type Track {
+  album: AlbumSimplified!
+  artists: [ArtistSimplified!]!
   discNumber: Int
   durationMs: Int
   explicit: Boolean
   id: String!
-  href: String
+  href: String!
   name: String!
   previewUrl: String
+  uri: String!
+  type: String
+}
+
+type ArtistSimplified {
+  href: String
+  id: String!
+  name: String!
+  type: String
+  uri: String
+}
+
+type TrackPaging {
+  href: String
+  items: [Track!]
+  limit: Int!
+  next: String!
+  offset: Int!
+  previous: String!
+  total: Int!
+}
+
+type ArtistPaging {
+  href: String
+  items: [Artist!]
+  limit: Int!
+  next: String!
+  offset: Int!
+  previous: String!
+  total: Int!
+}
+
+type ArtistSimplifiedPaging {
+  href: String
+  items: [ArtistSimplified!]
+  limit: Int!
+  next: String!
+  offset: Int!
+  previous: String!
+  total: Int!
+}
+
+type AlbumSimplifiedPaging {
+  href: String
+  items: [AlbumSimplified!]
+  limit: Int!
+  next: String!
+  offset: Int!
+  previous: String!
+  total: Int!
+}
+
+type SearchResult {
+  albums: AlbumSimplifiedPaging
+  artists: ArtistPaging
+  tracks: TrackPaging
 }

@@ -23,11 +23,11 @@ public class SpotifyQuery implements GraphQLQueryResolver {
         return spotifyService.getArtist(id);
     }
 
-    public Paging<AlbumSimplified> getArtistsAlbums(String id) {
-        return spotifyService.getArtistsAlbums(id);
-    }
-
-    public SearchResult getSearchResults(String query, String type) {
-        return spotifyService.searchQuery(query, type);
-    }
+//    public Paging<AlbumSimplified> getArtistsAlbums(String id) {
+//        return spotifyService.getArtistsAlbums(id);
+//    }
+//
+//    public SearchResult getSearchResults(String query, String type) {
+//        return spotifyService.searchQuery(query, type);
+//    }
 }

@@ -1,41 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { useMusicActions } from '@state/music/actions';
-import { useSelector } from 'react-redux';
-import { StoreState } from '@state/store-interfaces';
 import ImageWithFallback from '@common/components/ImageWithFallback/ImageWithFallback';
 import './ArtistInfoPage.css';
 import BackCircleIcon from '@common/components/BackCircleIcon/BackCircleIcon';
-import MovieMonsterApi from '@common/services/movie-monster-api/movie-monster-api';
-import { useSafeState } from '@common/hooks/use-safe-state';
-
-const usePrimeState = () => {
-  const [albums, setAlbums] = useSafeState([]);
-  const { spotifyArtistId } = useParams<{ spotifyArtistId?: string }>();
-  const musicActions = useMusicActions();
-
-  useEffect(() => {
-    const fetchAlbums = async (spotifyArtistId: string) => {
-      const response = await MovieMonsterApi.music.getAlbumsByArtist({ spotifyArtistId });
-      console.log(response);
-      setAlbums(response);
-    };
-    if (spotifyArtistId) {
-      musicActions.fetchSelectedArtist(spotifyArtistId);
-      fetchAlbums(spotifyArtistId);
-    }
-  }, []);
-
-  return { albums };
-};
+import { useArtistQuery } from 'graphql/querys/artist-query';
 
 const ArtistInfoPage = () => {
-  usePrimeState();
+  const { spotifyArtistId } = useParams<{ spotifyArtistId?: string }>();
   const history = useHistory();
-  const artist = useSelector((state: StoreState) => state.music.selectedArtist);
+  const { artist, loading, error } = useArtistQuery(spotifyArtistId || '');
   const fallbackLetter = artist?.name?.charAt(0) || '?';
 
-  if (artist) {
+  if (!loading && artist) {
     return (
       <div className="ArtistInfoPage">
         <BackCircleIcon className="TrackInfoPage__back-button" onClick={() => history.goBack()} />

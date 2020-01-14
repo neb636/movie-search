@@ -13,10 +13,18 @@ graphql:
   servlet:
     mapping: /graphql
     enabled: true
-    corsEnabled: false
+    corsEnabled: true
+    # if you want to @ExceptionHandler annotation for custom GraphQLErrors
+    exception-handlers-enabled: true
+    contextSetting: PER_REQUEST_WITH_INSTRUMENTATION
   tools:
     schema-location-pattern: "**/*.graphqls"
 graphiql:
   enabled: true
+  mapping: /graphiql
+  endpoint:
+    graphql: /graphql
+    subscriptions: /subscriptions
   cdn:
     enabled: true
+  pageTitle: GraphiQL Explorer

@@ -1,3 +1,6 @@
+import { Artist_artist } from 'graphql/querys/types/Artist';
+import { Track_track } from 'graphql/querys/types/Track';
+
 export interface SpotifyImage {
   height: number;
   url: string;
@@ -53,26 +56,10 @@ export interface SpotifyTrackItemResponse {
   uri: string;
 }
 
-export interface SpotifyArtistItemResponse {
-  externalUrls: ExternalUrls;
-  followers: {
-    href?: any;
-    total: number;
-  };
-  genres: string[];
-  href: string;
-  id: string;
-  images: SpotifyImage[];
-  name: string;
-  popularity: number;
-  type: string;
-  uri: string;
-}
-
 export interface SpotifySearchResponse {
   artists: {
     href: string;
-    items: SpotifyArtistItemResponse[];
+    items: Artist_artist[];
     limit: number;
     offset: number;
     next?: number;
@@ -81,7 +68,7 @@ export interface SpotifySearchResponse {
   };
   tracks: {
     href: string;
-    items: SpotifyTrackItemResponse[];
+    items: Track_track[];
     limit: number;
     offset: number;
     next?: number;

@@ -1,8 +1,9 @@
 import { ArtistItem, TrackItem } from './interfaces';
-import { mapArtist, mapArtists, mapTrack, mapTracks } from './mapper';
 import MovieMonsterApi from '@common/services/movie-monster-api/movie-monster-api';
 import { useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
+import { mapArtists } from '@common/mappers/artist-mapper';
+import { mapTracks } from '@common/mappers/track-mapper';
 
 const MUSIC_STATE = 'MUSIC_STATE';
 
@@ -45,18 +46,6 @@ const setSelectedArtist = (artist: ArtistItem | undefined) => ({
   artist
 });
 
-const fetchSelectedTrack = (spotifyTrackId: string) => async (dispatch: Dispatch) => {
-  const response = await MovieMonsterApi.music.getTrack({ spotifyTrackId });
-  const track = mapTrack(response);
-  dispatch(setSelectedTrack(track));
-};
-
-const fetchSelectedArtist = (spotifyArtistId: string) => async (dispatch: Dispatch) => {
-  const response = await MovieMonsterApi.music.getArtist({ spotifyArtistId });
-  const artist = mapArtist(response);
-  dispatch(setSelectedArtist(artist));
-};
-
 const querySearchTerm = (term: string) => async (dispatch: Dispatch) => {
   dispatch(setIsSearching(true));
   const response = await MovieMonsterApi.music.search({ term });
@@ -73,9 +62,6 @@ export const useMusicActions = () => {
 
   return {
     querySearchTerm: (term: string) => dispatch(querySearchTerm(term)),
-    setSearchTerm: (term: string) => dispatch(setSearchTerm(term)),
-    fetchSelectedTrack: (spotifyTrackId: string) => dispatch(fetchSelectedTrack(spotifyTrackId)),
-    setSelectedArtist: (artist: ArtistItem | undefined) => dispatch(setSelectedArtist(artist)),
-    fetchSelectedArtist: (spotifyArtistId: string) => dispatch(fetchSelectedArtist(spotifyArtistId))
+    setSearchTerm: (term: string) => dispatch(setSearchTerm(term))
   };
 };
