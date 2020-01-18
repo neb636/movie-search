@@ -1,5 +1,16 @@
-import { TrackItem } from '@state/music/interfaces';
 import { Track_track } from 'graphql/querys/types/Track';
+
+export type TrackItem = {
+  albumName: string;
+  artistName: string;
+  mainImage?: string;
+  duration?: number | null;
+  href: string;
+  id: string;
+  name: string;
+  previewUrl: string;
+  uri: string;
+};
 
 export const mapTrack = (track: Track_track): TrackItem => {
   const { album, artists, durationMs, href, id, name, previewUrl, type, uri } = track;

@@ -1,5 +1,15 @@
-import { ArtistItem } from '@state/music/interfaces';
 import { Artist_artist } from 'graphql/querys/types/Artist';
+
+export type ArtistItem = {
+  genres: string[];
+  href: string;
+  id: string;
+  mainImage?: string;
+  images: string[];
+  name: string;
+  type: string;
+  uri: string;
+};
 
 export const mapArtist = (artist: Artist_artist): ArtistItem => {
   const { genres, href, id, name, type, uri } = artist;

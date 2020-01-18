@@ -1,9 +1,9 @@
 import * as React from 'react';
 import './ArtistCard.css';
-import { ArtistItem } from '@state/music/interfaces';
 import ImageWithFallback from '@common/components/ImageWithFallback/ImageWithFallback';
 import { Routes } from '@routes/routes';
 import { useHistory } from 'react-router-dom';
+import { ArtistItem } from '@common/mappers/artist-mapper';
 
 type Props = { artist: ArtistItem };
 

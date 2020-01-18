@@ -1,8 +1,8 @@
 import * as React from 'react';
 import './TrackCard.css';
-import { TrackItem } from '@state/music/interfaces';
 import { Routes } from '@routes/routes';
 import { useHistory } from 'react-router-dom';
+import { TrackItem } from '@common/mappers/track-mapper';
 
 type Props = { track: TrackItem };
 

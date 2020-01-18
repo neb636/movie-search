@@ -2,11 +2,15 @@ import * as React from 'react';
 import './SearchInput.css';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { FormEvent } from 'react';
-import { useMusicActions } from '@state/music/actions';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import * as queryString from 'query-string';
 import classnames from 'classnames';
 import { Routes } from '@routes/routes';
+
+type Props = {
+  setCurrentSearchedTerm: (currentSearchedTerm: string) => void;
+  currentSearchedTerm: string;
+};
 
 const useInputRef = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -20,18 +24,9 @@ const useInputRef = () => {
   return inputRef;
 };
 
-const useSearchTerm = () => {
-  const location = useLocation();
-  const initialSearchTerm = queryString.parse(location.search)[Routes.search.queryParams.searchTerm] as string | undefined;
-  const [searchTerm, setSearchTerm] = useState(initialSearchTerm || '');
-
-  return { searchTerm, setSearchTerm };
-};
-
-const SearchInput = () => {
+const SearchInput = ({ setCurrentSearchedTerm, currentSearchedTerm }: Props) => {
+  const [searchTerm, setSearchTerm] = useState(currentSearchedTerm || '');
   const history = useHistory();
-  const { searchTerm, setSearchTerm } = useSearchTerm();
-  const { querySearchTerm } = useMusicActions();
   const inputRef = useInputRef();
   const buttonClassList = classnames('SearchInput__button', {
     'SearchInput--button-disabled': !searchTerm
@@ -45,7 +40,7 @@ const SearchInput = () => {
       pathname: Routes.search.getLink(),
       search
     });
-    querySearchTerm(searchTerm);
+    setCurrentSearchedTerm(searchTerm);
   };
 
   return (
@@ -58,7 +53,7 @@ const SearchInput = () => {
         onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchTerm(event.target.value)}
       />
 
-      <button className={buttonClassList} onClick={() => querySearchTerm(searchTerm)} disabled={!searchTerm}>
+      <button className={buttonClassList} onClick={() => setCurrentSearchedTerm(searchTerm)} disabled={!searchTerm}>
         Search
       </button>
     </form>

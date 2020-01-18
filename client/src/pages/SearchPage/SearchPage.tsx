@@ -5,28 +5,15 @@ import SearchList from './SearchList/SearchList';
 import TemporaryLogo from '@common/components/TemporaryLogo/TemporaryLogo';
 import { useLocation } from 'react-router-dom';
 import * as queryString from 'query-string';
-import { useEffect } from 'react';
-import { useMusicActions } from '@state/music/actions';
+import { useState } from 'react';
 import { Routes } from '@routes/routes';
-
-const useHandleSearchQueryParamOnLoad = () => {
-  const { querySearchTerm, setSearchTerm } = useMusicActions();
-  const location = useLocation();
-  const searchTerm = queryString.parse(location.search)[Routes.search.queryParams.searchTerm] as string | undefined;
-
-  useEffect(() => {
-    if (searchTerm) {
-      querySearchTerm(searchTerm);
-    }
-
-    return () => {
-      setSearchTerm('');
-    };
-  }, []);
-};
+import { useSearchQuery } from 'graphql/querys/search-query';
 
 const SearchPage = () => {
-  useHandleSearchQueryParamOnLoad();
+  const location = useLocation();
+  const initialSearchTerm = queryString.parse(location.search)[Routes.search.queryParams.searchTerm] as string | undefined;
+  const [currentSearchedTerm, setCurrentSearchedTerm] = useState(initialSearchTerm || '');
+  const { results: searchResults, loading, error } = useSearchQuery(currentSearchedTerm);
 
   return (
     <div className="SearchPage">
@@ -37,9 +24,9 @@ const SearchPage = () => {
 
       <div className="SearchPage__sub-text">Search for movies by your favorite music</div>
 
-      <SearchInput />
+      <SearchInput setCurrentSearchedTerm={setCurrentSearchedTerm} currentSearchedTerm={currentSearchedTerm} />
 
-      <SearchList />
+      <SearchList loading={loading} searchResults={searchResults} currentSearchedTerm={currentSearchedTerm} />
     </div>
   );
 };

@@ -106,7 +106,7 @@ type AlbumSimplifiedPaging {
 }
 
 type SearchResult {
-  albums: AlbumSimplifiedPaging
-  artists: ArtistPaging
-  tracks: TrackPaging
+  albums: AlbumSimplifiedPaging!
+  artists: ArtistPaging!
+  tracks: TrackPaging!
 }
