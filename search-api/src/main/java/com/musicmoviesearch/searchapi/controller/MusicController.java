@@ -1,10 +1,11 @@
 package com.musicmoviesearch.searchapi.controller;
 
+import com.musicmoviesearch.searchapi.dto.spotify.PagingDto;
+import com.musicmoviesearch.searchapi.dto.spotify.SearchResultDto;
 import com.musicmoviesearch.searchapi.service.SpotifyService;
 import com.wrapper.spotify.model_objects.special.SearchResult;
 import com.wrapper.spotify.model_objects.specification.AlbumSimplified;
 import com.wrapper.spotify.model_objects.specification.Artist;
-import com.wrapper.spotify.model_objects.specification.Paging;
 import com.wrapper.spotify.model_objects.specification.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,12 +30,12 @@ public class MusicController {
     }
 
     @GetMapping(value = "/albums/{spotify_artist_id}")
-    public Paging<AlbumSimplified> getArtistsAlbums(@PathVariable("spotify_artist_id") @Valid String spotifyArtistId) {
+    public PagingDto<AlbumSimplified> getArtistsAlbums(@PathVariable("spotify_artist_id") @Valid String spotifyArtistId) {
         return spotifyService.getArtistsAlbums(spotifyArtistId);
     }
 
     @GetMapping(value = "/search")
-    public SearchResult getSong(@RequestParam("query") String query, @RequestParam("type") String type) {
+    public SearchResultDto getSong(@RequestParam("query") String query, @RequestParam("type") String type) {
         return spotifyService.searchQuery(query, type);
     }
 }

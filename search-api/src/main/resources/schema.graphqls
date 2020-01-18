@@ -2,8 +2,8 @@
 type Query {
   getTrack(id: String): Track
   getArtist(id: String): Artist
-#  getArtistsAlbums(id: String): AlbumSimplifiedPaging
-#  getSearchResults(query: String, type: String): SearchResult
+  getArtistsAlbums(id: String): AlbumSimplifiedPaging
+  getSearchResults(query: String, type: String): SearchResult
 }
 
 type ExternalUrls {

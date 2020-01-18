@@ -1,5 +1,7 @@
 package com.musicmoviesearch.searchapi.service;
 
+import com.musicmoviesearch.searchapi.dto.spotify.PagingDto;
+import com.musicmoviesearch.searchapi.dto.spotify.SearchResultDto;
 import com.musicmoviesearch.searchapi.exception.SearchRequestException;
 import com.wrapper.spotify.SpotifyApi;
 import com.wrapper.spotify.exceptions.SpotifyWebApiException;
@@ -14,6 +16,8 @@ import com.wrapper.spotify.requests.data.artists.GetArtistRequest;
 import com.wrapper.spotify.requests.data.artists.GetArtistsAlbumsRequest;
 import com.wrapper.spotify.requests.data.search.SearchItemRequest;
 import com.wrapper.spotify.requests.data.tracks.GetTrackRequest;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -23,19 +27,22 @@ import java.io.IOException;
 public class SpotifyService {
     final private String clientId;
     final private String clientSecret;
+    final private ModelMapper modelMapper = new ModelMapper();
 
+    @Autowired
     public SpotifyService(@Value("${app.spotify-credentials.client-id}") String clientId,
                           @Value("${app.spotify-credentials.client-secret}") String clientSecret) {
         this.clientId = clientId;
         this.clientSecret = clientSecret;
     }
 
-    public SearchResult searchQuery(String query, String type) {
+    public SearchResultDto searchQuery(String query, String type) {
         final SpotifyApi spotifyApi = getSpotifyClient();
         final SearchItemRequest getSearchResultsRequest = spotifyApi.searchItem(query, type).build();
 
         try {
-            return getSearchResultsRequest.execute();
+            SearchResult searchResults = getSearchResultsRequest.execute();
+            return modelMapper.map(searchResults, SearchResultDto.class);
         } catch (IOException | SpotifyWebApiException e) {
             throw new SearchRequestException(e.getMessage());
         }
@@ -63,12 +70,13 @@ public class SpotifyService {
         }
     }
 
-    public Paging<AlbumSimplified> getArtistsAlbums(String artistId) {
+    public PagingDto<AlbumSimplified> getArtistsAlbums(String artistId) {
         final SpotifyApi spotifyApi = getSpotifyClient();
         final GetArtistsAlbumsRequest getArtistsAlbums = spotifyApi.getArtistsAlbums(artistId).build();
 
         try {
-            return getArtistsAlbums.execute();
+            Paging<AlbumSimplified> artistsAlbums = getArtistsAlbums.execute();
+            return modelMapper.map(artistsAlbums, PagingDto.class);
         } catch (IOException | SpotifyWebApiException e) {
             throw new SearchRequestException(e.getMessage());
         }
