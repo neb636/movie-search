@@ -7,24 +7,20 @@
 // ====================================================
 
 export interface Track_track_album_images {
-  __typename: 'Image';
   url: string;
 }
 
 export interface Track_track_album {
-  __typename: 'AlbumSimplified';
   id: string;
   name: string;
   images: Track_track_album_images[] | null;
 }
 
 export interface Track_track_artists {
-  __typename: 'ArtistSimplified';
   name: string;
 }
 
 export interface Track_track {
-  __typename: 'Track';
   album: Track_track_album;
   artists: Track_track_artists[];
   discNumber: number | null;

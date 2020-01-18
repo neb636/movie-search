@@ -7,12 +7,10 @@
 // ====================================================
 
 export interface Search_results_artists_items_images {
-  __typename: 'Image';
   url: string;
 }
 
 export interface Search_results_artists_items {
-  __typename: 'Artist';
   genres: string[] | null;
   href: string;
   id: string;
@@ -23,7 +21,6 @@ export interface Search_results_artists_items {
 }
 
 export interface Search_results_artists {
-  __typename: 'ArtistPaging';
   href: string | null;
   limit: number;
   next: string;
@@ -33,24 +30,20 @@ export interface Search_results_artists {
 }
 
 export interface Search_results_tracks_items_album_images {
-  __typename: 'Image';
   url: string;
 }
 
 export interface Search_results_tracks_items_album {
-  __typename: 'AlbumSimplified';
   id: string;
   name: string;
   images: Search_results_tracks_items_album_images[] | null;
 }
 
 export interface Search_results_tracks_items_artists {
-  __typename: 'ArtistSimplified';
   name: string;
 }
 
 export interface Search_results_tracks_items {
-  __typename: 'Track';
   album: Search_results_tracks_items_album;
   artists: Search_results_tracks_items_artists[];
   discNumber: number | null;
@@ -65,7 +58,6 @@ export interface Search_results_tracks_items {
 }
 
 export interface Search_results_tracks {
-  __typename: 'TrackPaging';
   href: string | null;
   limit: number;
   next: string;
@@ -75,7 +67,6 @@ export interface Search_results_tracks {
 }
 
 export interface Search_results {
-  __typename: 'SearchResult';
   artists: Search_results_artists;
   tracks: Search_results_tracks;
 }

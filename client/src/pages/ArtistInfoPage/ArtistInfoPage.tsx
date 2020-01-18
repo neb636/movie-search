@@ -3,12 +3,12 @@ import { useParams, useHistory } from 'react-router-dom';
 import ImageWithFallback from '@common/components/ImageWithFallback/ImageWithFallback';
 import './ArtistInfoPage.css';
 import BackCircleIcon from '@common/components/BackCircleIcon/BackCircleIcon';
-import { useArtistQuery } from 'graphql/querys/artist-query';
+import { useArtistInfoPageQuery } from '@pages/ArtistInfoPage/use-artist-info-page-query';
 
 const ArtistInfoPage = () => {
   const { spotifyArtistId } = useParams<{ spotifyArtistId?: string }>();
   const history = useHistory();
-  const { artist, loading, error } = useArtistQuery(spotifyArtistId || '');
+  const { artist, albums, loading, error } = useArtistInfoPageQuery(spotifyArtistId || '');
   const fallbackLetter = artist?.name?.charAt(0) || '?';
 
   if (!loading && artist) {
@@ -27,6 +27,29 @@ const ArtistInfoPage = () => {
             <h2 className="ArtistInfoPage__artist-name">{artist.name}</h2>
           </div>
         </div>
+
+        {albums && albums.items && (
+          <div className="ArtistInfoPage__albums-section">
+            <div className="ArtistInfoPage__albums-section-header">Albums</div>
+
+            <div className="ArtistInfoPage__albums-list-wrapper">
+              {albums.items.map(album => (
+                <div className="ArtistInfoPage__album" key={album.id}>
+                  <ImageWithFallback
+                    className="ArtistInfoPage__album-image"
+                    src={album.mainImage}
+                    fallback={<div className="ArtistInfoPage__artist-image-fallback">?</div>}
+                    alt="Track Fallback Image"
+                  />
+
+                  <div className="ArtistInfoPage__album-info">
+                    <div className="ArtistInfoPage__album-name">{album.name}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     );
   }

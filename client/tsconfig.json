@@ -21,7 +21,8 @@
       "@common/*": ["common/*"],
       "@state/*": ["state/*"],
       "@pages/*": ["pages/*"],
-      "@routes/*": ["routes/*"]
+      "@routes/*": ["routes/*"],
+      "@graphql-types/*": ["graphql-types/*"]
     }
   },
   "exclude": [

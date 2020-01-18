@@ -3,29 +3,19 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: Artist
+// GraphQL fragment: ArtistFields
 // ====================================================
 
-export interface Artist_artist_images {
-  __typename: 'Image';
+export interface ArtistFields_images {
   url: string;
 }
 
-export interface Artist_artist {
-  __typename: 'Artist';
+export interface ArtistFields {
   genres: string[] | null;
   href: string;
   id: string;
-  images: Artist_artist_images[] | null;
+  images: ArtistFields_images[] | null;
   name: string;
   type: string;
   uri: string;
-}
-
-export interface Artist {
-  artist: Artist_artist | null;
-}
-
-export interface ArtistVariables {
-  id: string;
 }

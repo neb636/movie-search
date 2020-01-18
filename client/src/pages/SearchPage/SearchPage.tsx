@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import * as queryString from 'query-string';
 import { useState } from 'react';
 import { Routes } from '@routes/routes';
-import { useSearchQuery } from 'graphql/querys/search-query';
+import { useSearchQuery } from '@pages/SearchPage/search-query';
 
 const SearchPage = () => {
   const location = useLocation();

@@ -25,7 +25,8 @@
     "eject": "react-scripts-ts eject",
     "prettier": "prettier --write 'src/**/*.{css,ts,tsx}'",
     "apollo:download-schema": "apollo schema:download --endpoint=http://localhost:8080/graphql graphql-schema.json",
-    "apollo:generate-query-types": "apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/types/graphql-global-types.ts types"
+    "apollo:generate-query-types": "apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --no-addTypename --outputFlat --globalTypesFile=src/types/graphql-global-types.ts src/graphql-types",
+    "apollo:watch": "apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --no-addTypename --outputFlat --globalTypesFile=src/types/graphql-global-types.ts src/graphql-types --watch"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",

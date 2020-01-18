@@ -3,8 +3,8 @@ import { Route, Redirect, Switch, BrowserRouter } from 'react-router-dom';
 import Header from './common/components/Header/Header';
 import './App.css';
 import { Routes } from '@routes/routes';
-import { graphQLClient } from 'graphql/graphql-client';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { graphQLClient } from '@common/graphql/graphql-client';
 
 const App = () => {
   return (

@@ -1,6 +1,6 @@
-import { Search_results } from 'graphql/querys/types/Search';
 import { mapTracks, TrackItem } from '@common/mappers/track-mapper';
 import { ArtistItem, mapArtists } from '@common/mappers/artist-mapper';
+import { Search_results } from '@graphql-types/Search';
 
 export type MusicSearchResults = {
   artists: ArtistItem[];

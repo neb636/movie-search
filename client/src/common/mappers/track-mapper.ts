@@ -1,4 +1,4 @@
-import { Track_track } from 'graphql/querys/types/Track';
+import { TrackFields } from '@graphql-types/TrackFields';
 
 export type TrackItem = {
   albumName: string;
@@ -12,7 +12,7 @@ export type TrackItem = {
   uri: string;
 };
 
-export const mapTrack = (track: Track_track): TrackItem => {
+export const mapTrack = (track: TrackFields): TrackItem => {
   const { album, artists, durationMs, href, id, name, previewUrl, type, uri } = track;
   const albumName = album?.name;
   const artistName = artists[0]?.name;
@@ -36,7 +36,7 @@ export const mapTrack = (track: Track_track): TrackItem => {
   };
 };
 
-export const mapTracks = (tracks: Track_track[] | undefined): TrackItem[] => {
+export const mapTracks = (tracks: TrackFields[] | undefined): TrackItem[] => {
   if (tracks) {
     return tracks.map(track => mapTrack(track));
   }

@@ -3,12 +3,12 @@ import { useParams, useHistory } from 'react-router-dom';
 import ImageWithFallback from '@common/components/ImageWithFallback/ImageWithFallback';
 import './TrackInfoPage.css';
 import BackCircleIcon from '@common/components/BackCircleIcon/BackCircleIcon';
-import { useTrackQuery } from 'graphql/querys/track-query';
+import { useTrackInfoPageQuery } from '@pages/TrackInfoPage/use-track-info-page-query';
 
 const TrackInfoPage = () => {
   const { spotifyTrackId } = useParams<{ spotifyTrackId?: string }>();
   const history = useHistory();
-  const { loading, error, track } = useTrackQuery(spotifyTrackId || '');
+  const { loading, error, track } = useTrackInfoPageQuery(spotifyTrackId || '');
   const fallbackLetter = track?.name?.charAt(0) || '?';
 
   if (!loading && track) {

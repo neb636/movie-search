@@ -1,9 +1,11 @@
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
-import { Search } from 'graphql/querys/types/Search';
 import { mapSearchResults } from '@common/mappers/search-mapper';
+import { ARTIST_FIELDS_FRAGMENT } from '@common/graphql/fragments/artist-fragment';
+import { Search } from '@graphql-types/Search';
+import { TRACK_FIELDS_FRAGMENT } from '@common/graphql/fragments/track-fragment';
 
-const GET_SEARCH = gql`
+const SEARCH_PAGE_QUERY = gql`
   query Search($query: String!, $type: String!) {
     results: getSearchResults(query: $query, type: $type) {
       artists {
@@ -13,15 +15,7 @@ const GET_SEARCH = gql`
         offset
         total
         items {
-          genres
-          href
-          id
-          images {
-            url
-          }
-          name
-          type
-          uri
+          ...ArtistFields
         }
       }
       tracks {
@@ -31,33 +25,17 @@ const GET_SEARCH = gql`
         offset
         total
         items {
-          album {
-            id
-            name
-            images {
-              url
-            }
-          }
-          artists {
-            name
-          }
-          discNumber
-          durationMs
-          explicit
-          id
-          href
-          name
-          previewUrl
-          uri
-          type
+          ...TrackFields
         }
       }
     }
   }
+  ${ARTIST_FIELDS_FRAGMENT}
+  ${TRACK_FIELDS_FRAGMENT}
 `;
 
 export const useSearchQuery = (query: string | undefined) => {
-  const { data, loading, error } = useQuery<Search>(GET_SEARCH, {
+  const { data, loading, error } = useQuery<Search>(SEARCH_PAGE_QUERY, {
     variables: { query, type: 'artist,track' }
   });
   const results = data?.results ? mapSearchResults(data.results) : undefined;
