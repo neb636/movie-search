@@ -2,6 +2,9 @@ app:
   version: 0.1
   base-url: http://d58e88f4.ngrok.io
   client-origin: http://localhost:3000
+  omdb-credentials:
+    api-key: ${OMDB_API_KEY}
+    api-endpoint: ${OMDB_API_ENDPOINT}
   spotify-credentials:
     client-id: ${SPOTIFY_CLIENT_ID}
     client-secret: ${SPOTIFY_CLIENT_SECRET}

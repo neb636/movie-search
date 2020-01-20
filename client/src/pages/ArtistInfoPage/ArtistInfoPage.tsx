@@ -6,7 +6,7 @@ import BackCircleIcon from '@common/components/BackCircleIcon/BackCircleIcon';
 import { useArtistInfoPageQuery } from '@pages/ArtistInfoPage/use-artist-info-page-query';
 import { AlbumItem } from '@common/mappers/album-mapper';
 
-const SOUNDTRACK_FILTERS = ['(Original Motion Picture', '(Original Music', 'Soundtrack', '(Music from'];
+const SOUNDTRACK_FILTERS = ['Motion Picture', 'Original Music', 'Soundtrack', 'Music from', ' '];
 
 const filterAlbums = (albums: AlbumItem[]) => {
   return albums.filter(album => {

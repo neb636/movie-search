@@ -5,6 +5,39 @@ type Query {
   getAlbum(id: String): Album
   getArtistsAlbums(id: String): [AlbumSimplified!]
   getSearchResults(query: String, type: String): SearchResult
+  getMovie(title: String): Movie
+}
+
+type Rating {
+  Source: String!
+  Value: String!
+}
+
+type Movie {
+  Title: String!
+  Year: String!
+  Rated: String
+  Released: String
+  Runtime: String
+  Genre: String
+  Director: String
+  Writer: String
+  Actors: String
+  Plot: String
+  Language: String
+  Country: String
+  Awards: String
+  Poster: String
+  Ratings: [Rating]
+  Metascore: String
+  imdbRating: String
+  imdbVotes: String
+  imdbID: String
+  Type: String
+  DVD: String
+  BoxOffice: String
+  Production: String
+  Website: String
 }
 
 type ExternalUrls {
