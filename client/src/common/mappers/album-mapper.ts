@@ -1,5 +1,4 @@
 import { AlbumFields, AlbumFields_images } from '@graphql-types/AlbumFields';
-import { ArtistInfoPage_albums } from '@graphql-types/ArtistInfoPage';
 
 export type AlbumItem = {
   albumGroup: string | null;
@@ -33,17 +32,4 @@ export const mapAlbums = (albums: AlbumFields[] | undefined) => {
   }
 
   return [];
-};
-
-export const mapAlbumsPaging = (albumsPaging: ArtistInfoPage_albums) => {
-  let items: AlbumItem[] = [];
-
-  if (albumsPaging.items && albumsPaging.items.length) {
-    items = albumsPaging.items.map(album => mapAlbum(album));
-  }
-
-  return {
-    ...albumsPaging,
-    items
-  };
 };

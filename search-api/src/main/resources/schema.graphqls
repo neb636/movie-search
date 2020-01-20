@@ -3,7 +3,7 @@ type Query {
   getTrack(id: String): Track
   getArtist(id: String): Artist
   getAlbum(id: String): Album
-  getArtistsAlbums(id: String): AlbumSimplifiedPaging
+  getArtistsAlbums(id: String): [AlbumSimplified!]
   getSearchResults(query: String, type: String): SearchResult
 }
 

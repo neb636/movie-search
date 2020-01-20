@@ -4,12 +4,32 @@ import ImageWithFallback from '@common/components/ImageWithFallback/ImageWithFal
 import './ArtistInfoPage.css';
 import BackCircleIcon from '@common/components/BackCircleIcon/BackCircleIcon';
 import { useArtistInfoPageQuery } from '@pages/ArtistInfoPage/use-artist-info-page-query';
+import { AlbumItem } from '@common/mappers/album-mapper';
+
+const SOUNDTRACK_FILTERS = ['(Original Motion Picture', '(Original Music', 'Soundtrack', '(Music from'];
+
+const filterAlbums = (albums: AlbumItem[]) => {
+  return albums.filter(album => {
+    return SOUNDTRACK_FILTERS.map(filter => album.name.includes(filter)).some(result => result);
+  });
+};
+
+const parseName = (name: string) => {
+  const indexOfFirst = name.search(/[-(\[]/);
+
+  if (indexOfFirst) {
+    return name.substring(0, indexOfFirst);
+  }
+
+  return '?';
+};
 
 const ArtistInfoPage = () => {
   const { spotifyArtistId } = useParams<{ spotifyArtistId?: string }>();
   const history = useHistory();
   const { artist, albums, loading, error } = useArtistInfoPageQuery(spotifyArtistId || '');
   const fallbackLetter = artist?.name?.charAt(0) || '?';
+  const soundtrackAlbums = filterAlbums(albums || []);
 
   if (!loading && artist) {
     return (
@@ -28,12 +48,12 @@ const ArtistInfoPage = () => {
           </div>
         </div>
 
-        {albums && albums.items && (
+        {!!soundtrackAlbums.length && (
           <div className="ArtistInfoPage__albums-section">
-            <div className="ArtistInfoPage__albums-section-header">Albums</div>
+            <div className="ArtistInfoPage__albums-section-header">Movie Soundtracks</div>
 
             <div className="ArtistInfoPage__albums-list-wrapper">
-              {albums.items.map(album => (
+              {soundtrackAlbums.map(album => (
                 <div className="ArtistInfoPage__album" key={album.id}>
                   <ImageWithFallback
                     className="ArtistInfoPage__album-image"
@@ -43,7 +63,7 @@ const ArtistInfoPage = () => {
                   />
 
                   <div className="ArtistInfoPage__album-info">
-                    <div className="ArtistInfoPage__album-name">{album.name}</div>
+                    <div className="ArtistInfoPage__album-name">{parseName(album.name)}</div>
                   </div>
                 </div>
               ))}

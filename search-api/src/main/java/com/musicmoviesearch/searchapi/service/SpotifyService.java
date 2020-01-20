@@ -21,6 +21,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class SpotifyService {
@@ -81,16 +83,51 @@ public class SpotifyService {
         }
     }
 
-    public PagingDto<AlbumSimplified> getArtistsAlbums(String artistId) {
+    public List<AlbumSimplified> getArtistsAlbums(String artistId) {
+        List<PagingDto<AlbumSimplified>> initialResultsList = new ArrayList<PagingDto<AlbumSimplified>>();
+        List<PagingDto<AlbumSimplified>> pagingResultsList = fetchArtistsAlbumsRecursive(artistId, initialResultsList);
+        List<AlbumSimplified> resultsList = new ArrayList<AlbumSimplified>();
+
+        pagingResultsList.forEach(result -> {
+            resultsList.addAll(result.getItems());
+        });
+
+        return resultsList;
+    }
+
+    private List<PagingDto<AlbumSimplified>> fetchArtistsAlbumsRecursive(String artistId, List<PagingDto<AlbumSimplified>> resultsList) {
+        final Integer offset = getOffset(resultsList);
         final SpotifyApi spotifyApi = getSpotifyClient();
-        final GetArtistsAlbumsRequest getArtistsAlbums = spotifyApi.getArtistsAlbums(artistId).build();
+        final GetArtistsAlbumsRequest getArtistsAlbums = spotifyApi.getArtistsAlbums(artistId).offset(offset).limit(50).build();
 
         try {
-            Paging<AlbumSimplified> artistsAlbums = getArtistsAlbums.execute();
-            return modelMapper.map(artistsAlbums, PagingDto.class);
+            Paging<AlbumSimplified> results = getArtistsAlbums.execute();
+            PagingDto<AlbumSimplified> artistsAlbums = modelMapper.map(results,PagingDto.class);
+            resultsList.add(artistsAlbums);
+
+            if (!artistsAlbums.getOffset().equals(artistsAlbums.getTotal())) {
+                fetchArtistsAlbumsRecursive(artistId, resultsList);
+            }
+
+            return resultsList;
         } catch (IOException | SpotifyWebApiException e) {
             throw new SearchRequestException(e.getMessage());
         }
+    }
+
+    private Integer getOffset(List<PagingDto<AlbumSimplified>> resultsList) {
+
+        if (resultsList.isEmpty()) {
+            return 0;
+        }
+
+        final PagingDto<AlbumSimplified> lastItem = resultsList.get(resultsList.size() - 1);
+        final Integer total = lastItem.getTotal();
+        final Integer limit = lastItem.getLimit();
+        final Integer offset = lastItem.getOffset();
+        final int newOffset = offset + limit;
+
+        return newOffset > total ? total : newOffset;
     }
 
     private SpotifyApi getSpotifyClient() {

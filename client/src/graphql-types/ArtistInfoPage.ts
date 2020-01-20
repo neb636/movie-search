@@ -20,31 +20,22 @@ export interface ArtistInfoPage_artist {
   uri: string;
 }
 
-export interface ArtistInfoPage_albums_items_images {
+export interface ArtistInfoPage_albums_images {
   url: string;
 }
 
-export interface ArtistInfoPage_albums_items {
+export interface ArtistInfoPage_albums {
   albumGroup: string | null;
   albumType: string | null;
   id: string;
   href: string;
   name: string;
-  images: ArtistInfoPage_albums_items_images[] | null;
-}
-
-export interface ArtistInfoPage_albums {
-  href: string | null;
-  limit: number | null;
-  next: string | null;
-  offset: number | null;
-  total: number;
-  items: ArtistInfoPage_albums_items[] | null;
+  images: ArtistInfoPage_albums_images[] | null;
 }
 
 export interface ArtistInfoPage {
   artist: ArtistInfoPage_artist | null;
-  albums: ArtistInfoPage_albums | null;
+  albums: ArtistInfoPage_albums[] | null;
 }
 
 export interface ArtistInfoPageVariables {
