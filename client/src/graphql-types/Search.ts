@@ -22,10 +22,10 @@ export interface Search_results_artists_items {
 
 export interface Search_results_artists {
   href: string | null;
-  limit: number;
-  next: string;
-  offset: number;
-  total: number;
+  limit: number | null;
+  next: string | null;
+  offset: number | null;
+  total: number | null;
   items: Search_results_artists_items[] | null;
 }
 
@@ -59,16 +59,40 @@ export interface Search_results_tracks_items {
 
 export interface Search_results_tracks {
   href: string | null;
-  limit: number;
-  next: string;
+  limit: number | null;
+  next: string | null;
   offset: number;
   total: number;
   items: Search_results_tracks_items[] | null;
 }
 
+export interface Search_results_albums_items_images {
+  url: string;
+}
+
+export interface Search_results_albums_items {
+  albumGroup: string | null;
+  albumType: string | null;
+  id: string;
+  href: string;
+  name: string;
+  images: Search_results_albums_items_images[] | null;
+}
+
+export interface Search_results_albums {
+  href: string | null;
+  limit: number | null;
+  next: string | null;
+  offset: number | null;
+  previous: string | null;
+  total: number;
+  items: Search_results_albums_items[] | null;
+}
+
 export interface Search_results {
   artists: Search_results_artists;
   tracks: Search_results_tracks;
+  albums: Search_results_albums;
 }
 
 export interface Search {

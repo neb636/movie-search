@@ -1,28 +1,36 @@
 .ArtistCard {
-  width: 200px;
+  width: 140px;
   cursor: pointer;
-  margin-bottom: 30px;
-  padding: 0 15px;
+  margin-bottom: 15px;
 }
 
-.ArtistCard__image:hover {
-  opacity: 0.4;
+.ArtistCard:hover .ArtistCard__image {
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+}
+
+.ArtistCard:hover .ArtistCard__name {
+  color: #b08cf9;
 }
 
 .ArtistCard__image {
-  width: 200px;
-  height: 200px;
-  border-radius: 100%;
+  width: 140px;
+  height: 140px;
+  border-radius: 10px;
   overflow: hidden;
+  transition-property: color, background-color, box-shadow, transform, -webkit-box-shadow, -webkit-transform;
+  transition-duration: 0.15s;
 }
 
 .ArtistCard__name {
   margin-top: 10px;
-  font-size: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  transition-property: color, background-color, box-shadow, transform, -webkit-box-shadow, -webkit-transform;
+  transition-duration: 0.15s;
 }
 
 .ArtistCard__image-fallback {
-  background-color: #dbdee8;
   width: 100%;
   height: 100%;
   color: #fff;

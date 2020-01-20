@@ -1,11 +1,10 @@
 import * as React from 'react';
 import './SearchInput.css';
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
-import { FormEvent } from 'react';
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as queryString from 'query-string';
-import classnames from 'classnames';
 import { Routes } from '@routes/routes';
+import { debounce } from 'lodash';
 
 type Props = {
   setCurrentSearchedTerm: (currentSearchedTerm: string) => void;
@@ -28,35 +27,42 @@ const SearchInput = ({ setCurrentSearchedTerm, currentSearchedTerm }: Props) => 
   const [searchTerm, setSearchTerm] = useState(currentSearchedTerm || '');
   const history = useHistory();
   const inputRef = useInputRef();
-  const buttonClassList = classnames('SearchInput__button', {
-    'SearchInput--button-disabled': !searchTerm
-  });
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const search = queryString.stringify({ searchTerm });
+  const debouncedSetCurrentSearchedTerm = useCallback(
+    debounce((searchTerm: string) => {
+      setCurrentSearchedTerm(searchTerm);
+      const search = queryString.stringify({ searchTerm });
 
-    history.push({
-      pathname: Routes.search.getLink(),
-      search
-    });
-    setCurrentSearchedTerm(searchTerm);
+      history.push({
+        pathname: Routes.search.getLink(),
+        search
+      });
+    }, 350),
+    []
+  );
+
+  const onInputChange = (searchTerm: string) => {
+    setSearchTerm(searchTerm);
+    debouncedSetCurrentSearchedTerm(searchTerm);
   };
 
   return (
-    <form className="SearchInput" onSubmit={onSubmit}>
+    <div className="SearchInput">
+      <svg className="SearchInput__icon" viewBox="0 0 512 512">
+        <path
+          fill="#bfc3c6"
+          d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+        />
+      </svg>
+
       <input
         ref={inputRef}
         type="search"
         className="SearchInput__input"
         value={searchTerm}
-        onChange={(event: ChangeEvent<HTMLInputElement>) => setSearchTerm(event.target.value)}
+        onChange={(event: ChangeEvent<HTMLInputElement>) => onInputChange(event.target.value)}
       />
-
-      <button className={buttonClassList} onClick={() => setCurrentSearchedTerm(searchTerm)} disabled={!searchTerm}>
-        Search
-      </button>
-    </form>
+    </div>
   );
 };
 

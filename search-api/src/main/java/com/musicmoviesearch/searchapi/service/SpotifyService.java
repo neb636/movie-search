@@ -1,5 +1,6 @@
 package com.musicmoviesearch.searchapi.service;
 
+import com.musicmoviesearch.searchapi.dto.spotify.AlbumDto;
 import com.musicmoviesearch.searchapi.dto.spotify.PagingDto;
 import com.musicmoviesearch.searchapi.dto.spotify.SearchResultDto;
 import com.musicmoviesearch.searchapi.exception.SearchRequestException;
@@ -7,11 +8,9 @@ import com.wrapper.spotify.SpotifyApi;
 import com.wrapper.spotify.exceptions.SpotifyWebApiException;
 import com.wrapper.spotify.model_objects.credentials.ClientCredentials;
 import com.wrapper.spotify.model_objects.special.SearchResult;
-import com.wrapper.spotify.model_objects.specification.AlbumSimplified;
-import com.wrapper.spotify.model_objects.specification.Artist;
-import com.wrapper.spotify.model_objects.specification.Paging;
-import com.wrapper.spotify.model_objects.specification.Track;
+import com.wrapper.spotify.model_objects.specification.*;
 import com.wrapper.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
+import com.wrapper.spotify.requests.data.albums.GetAlbumRequest;
 import com.wrapper.spotify.requests.data.artists.GetArtistRequest;
 import com.wrapper.spotify.requests.data.artists.GetArtistsAlbumsRequest;
 import com.wrapper.spotify.requests.data.search.SearchItemRequest;
@@ -65,6 +64,18 @@ public class SpotifyService {
 
         try {
             return getArtistRequest.execute();
+        } catch (IOException | SpotifyWebApiException e) {
+            throw new SearchRequestException(e.getMessage());
+        }
+    }
+
+    public AlbumDto getAlbum(String albumId) {
+        final SpotifyApi spotifyApi = getSpotifyClient();
+        final GetAlbumRequest getAlbum = spotifyApi.getAlbum(albumId).build();
+
+        try {
+            Album album = getAlbum.execute();
+            return modelMapper.map(album, AlbumDto.class);
         } catch (IOException | SpotifyWebApiException e) {
             throw new SearchRequestException(e.getMessage());
         }

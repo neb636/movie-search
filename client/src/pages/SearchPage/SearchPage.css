@@ -14,7 +14,7 @@
 }
 
 .SearchPage__movie-monster-text {
-  color: #428cff;
+  color: var(--primary-color);
   font-size: 70px;
   margin-left: 35px;
   font-family: 'Passion One', cursive;
@@ -26,7 +26,7 @@
 }
 
 .SearchPage__sub-text {
-  color: #838bab;
+  color: var(--secondary-text-grey);
   font-size: 25px;
   display: flex;
   justify-content: center;

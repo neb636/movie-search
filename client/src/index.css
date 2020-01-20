@@ -2,5 +2,12 @@ body {
   margin: 0;
   padding: 0;
   color: #393939;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  --primary-color: #428cff;
+  --dark-text: #212121;
+  --secondary-text-grey: #868e96;
+  --pink-gradient: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
 }

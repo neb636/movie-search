@@ -1,6 +1,7 @@
 package com.musicmoviesearch.searchapi.graphql;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import com.musicmoviesearch.searchapi.dto.spotify.AlbumDto;
 import com.musicmoviesearch.searchapi.dto.spotify.PagingDto;
 import com.musicmoviesearch.searchapi.dto.spotify.SearchResultDto;
 import com.musicmoviesearch.searchapi.service.SpotifyService;
@@ -22,6 +23,8 @@ public class SpotifyQuery implements GraphQLQueryResolver {
     public Artist getArtist(String id) {
         return spotifyService.getArtist(id);
     }
+
+    public AlbumDto getAlbum(String id) { return spotifyService.getAlbum(id); }
 
     public PagingDto<AlbumSimplified> getArtistsAlbums(String id) {
         return spotifyService.getArtistsAlbums(id);

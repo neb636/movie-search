@@ -1,0 +1,30 @@
+.AlbumCard {
+  width: 225px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.AlbumCard__image {
+  width: 225px;
+  height: 225px;
+  border-radius: 10px;
+  object-fit: cover;
+  transition-property: color, background-color, box-shadow, transform, -webkit-box-shadow, -webkit-transform;
+  transition-duration: 0.15s;
+}
+
+.AlbumCard:hover .AlbumCard__image {
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+}
+
+.AlbumCard__name {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  transition-property: color, background-color, box-shadow, transform, -webkit-transform;
+}
+
+.AlbumCard:hover .AlbumCard__name {
+  color: #b08cf9;
+}

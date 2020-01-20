@@ -5,7 +5,7 @@ export type AlbumItem = {
   albumGroup: string | null;
   albumType: string | null;
   id: string;
-  href: string;
+  href: string | null;
   name: string;
   images: string[];
   mainImage?: string;

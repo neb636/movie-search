@@ -2,6 +2,7 @@
 type Query {
   getTrack(id: String): Track
   getArtist(id: String): Artist
+  getAlbum(id: String): Album
   getArtistsAlbums(id: String): AlbumSimplifiedPaging
   getSearchResults(query: String, type: String): SearchResult
 }
@@ -32,6 +33,55 @@ type Artist {
   popularity: Int
   type: String!
   uri: String!
+}
+
+type Album {
+  albumType: String
+  artists: [ArtistSimplified]
+  genres: [String!]
+  href: String
+  id: String!
+  images: [Image!]
+  label: String
+  name: String!
+  popularity: Int
+  releaseDate: String
+  tracks: TrackSimplifiedPaging
+  type: String
+  uri: String
+}
+
+type TrackLink {
+  href: String
+  id: String!
+  type: String
+  uri: String
+}
+
+type TrackSimplified {
+  artists: [ArtistSimplified!]!
+  discNumber: Int
+  durationMs: Int
+  explicit: Boolean
+  href: String
+  id: String!
+  isPlayable: Boolean
+  linkedFrom: TrackLink
+  name: String!
+  previewUrl: String
+  trackNumber: Int
+  type: String
+  uri: String
+}
+
+type TrackSimplifiedPaging {
+  href: String
+  items: [TrackSimplified!]
+  limit: Int!
+  next: String!
+  offset: Int!
+  previous: String!
+  total: Int!
 }
 
 type AlbumSimplified {
@@ -68,8 +118,8 @@ type ArtistSimplified {
 type TrackPaging {
   href: String
   items: [Track!]
-  limit: Int!
-  next: String!
+  limit: Int
+  next: String
   offset: Int!
   previous: String!
   total: Int!
@@ -78,30 +128,30 @@ type TrackPaging {
 type ArtistPaging {
   href: String
   items: [Artist!]
-  limit: Int!
-  next: String!
-  offset: Int!
-  previous: String!
-  total: Int!
+  limit: Int
+  next: String
+  offset: Int
+  previous: String
+  total: Int
 }
 
 type ArtistSimplifiedPaging {
   href: String
   items: [ArtistSimplified!]
-  limit: Int!
-  next: String!
-  offset: Int!
-  previous: String!
+  limit: Int
+  next: String
+  offset: Int
+  previous: String
   total: Int!
 }
 
 type AlbumSimplifiedPaging {
   href: String
   items: [AlbumSimplified!]
-  limit: Int!
-  next: String!
-  offset: Int!
-  previous: String!
+  limit: Int
+  next: String
+  offset: Int
+  previous: String
   total: Int!
 }
 

@@ -14,3 +14,16 @@
 .SearchList__spinner {
   margin-top: 20px;
 }
+
+.SearchList__tracks-wrapper .SearchListWrapper__list-list-wrapper {
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+
+.SearchList__artists-wrapper .SearchListWrapper__list-list-wrapper {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.SearchList__albums-wrapper .SearchListWrapper__list-list-wrapper {
+  grid-template-columns: repeat(4, 1fr);
+}

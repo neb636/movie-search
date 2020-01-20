@@ -1,16 +1,16 @@
 import * as React from 'react';
-import './ArtistCard.css';
 import ImageWithFallback from '@common/components/ImageWithFallback/ImageWithFallback';
 import { Routes } from '@routes/routes';
 import { useHistory } from 'react-router-dom';
-import { ArtistItem } from '@common/mappers/artist-mapper';
 import { useRandomFallbackGradient } from '@common/hooks/use-random-fallback-gradient';
+import { AlbumItem } from '@common/mappers/album-mapper';
+import './AlbumCard.css';
 
-type Props = { artist: ArtistItem };
+type Props = { album: AlbumItem };
 
-const ArtistCard = ({ artist }: Props) => {
+const AlbumCard = ({ album }: Props) => {
   const history = useHistory();
-  const { mainImage, name, type, id } = artist;
+  const { mainImage, name, id } = album;
   const fallbackLetter = name ? name.charAt(0) : '?';
   const fallbackGradient = useRandomFallbackGradient();
   const style = {
@@ -18,21 +18,21 @@ const ArtistCard = ({ artist }: Props) => {
   };
 
   return (
-    <div className="ArtistCard" onClick={() => history.push(Routes.artist.getLink(id))}>
+    <div className="AlbumCard" onClick={() => history.push(Routes.artist.getLink(id))}>
       <ImageWithFallback
-        className="ArtistCard__image"
+        className="AlbumCard__image"
         src={mainImage}
-        alt="Artist cover photo"
+        alt="Album cover photo"
         fallback={
-          <div className="ArtistCard__image-fallback" style={style}>
+          <div className="AlbumCard__image-fallback" style={style}>
             {fallbackLetter}
           </div>
         }
       />
 
-      <h5 className="ArtistCard__name">{name}</h5>
+      <div className="AlbumCard__name">{name}</div>
     </div>
   );
 };
 
-export default ArtistCard;
+export default AlbumCard;

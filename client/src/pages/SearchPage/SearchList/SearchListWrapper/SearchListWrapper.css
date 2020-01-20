@@ -1,17 +1,16 @@
 .SearchListWrapper {
-  margin-bottom: 50px;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 .SearchListWrapper__list-list-wrapper {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
 }
 
 .SearchListWrapper__title {
-  font-size: 21px;
+  font-size: 30px;
   margin-bottom: 20px;
-  text-transform: uppercase;
-  color: #898989;
+  color: var(--dark-text);
+  font-weight: 700;
 }

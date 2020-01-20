@@ -5,6 +5,7 @@ import TrackCard from './TrackCard/TrackCard';
 import Spinner from '@common/components/Spinner/Spinner';
 import SearchListWrapper from '@pages/SearchPage/SearchList/SearchListWrapper/SearchListWrapper';
 import { MusicSearchResults } from '@common/mappers/search-mapper';
+import AlbumCard from '@pages/SearchPage/SearchList/AlbumCard/AlbumCard';
 
 type Props = {
   loading: boolean;
@@ -23,17 +24,38 @@ const SearchList = (props: Props) => {
         {loading && <Spinner className="SearchList__spinner" />}
 
         {!loading && searchResults?.tracks && (
-          <SearchListWrapper title="Songs" hasResults={!!searchResults.tracks.length} noResultsMessage={songsNoResultsMessage}>
-            {searchResults.tracks.map(track => (
-              <TrackCard track={track} key={track.id} />
-            ))}
+          <SearchListWrapper
+            className="SearchList__tracks-wrapper"
+            title="Songs"
+            hasResults={!!searchResults.tracks.length}
+            noResultsMessage={songsNoResultsMessage}
+          >
+            {searchResults.tracks && searchResults.tracks.map(track => <TrackCard key={track.id} track={track} />)}
           </SearchListWrapper>
         )}
 
         {!loading && searchResults?.artists && (
-          <SearchListWrapper title="Artists" hasResults={!!searchResults.artists?.length} noResultsMessage={artistsNoResultsMessage}>
+          <SearchListWrapper
+            className="SearchList__artists-wrapper"
+            title="Artists"
+            hasResults={!!searchResults.artists?.length}
+            noResultsMessage={artistsNoResultsMessage}
+          >
             {searchResults.artists.map(artist => (
               <ArtistCard artist={artist} key={artist.id} />
+            ))}
+          </SearchListWrapper>
+        )}
+
+        {!loading && searchResults?.albums && (
+          <SearchListWrapper
+            className="SearchList__albums-wrapper"
+            title="Albums"
+            hasResults={!!searchResults.albums?.length}
+            noResultsMessage={artistsNoResultsMessage}
+          >
+            {searchResults.albums.map(album => (
+              <AlbumCard album={album} key={album.id} />
             ))}
           </SearchListWrapper>
         )}

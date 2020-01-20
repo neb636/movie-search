@@ -35,9 +35,9 @@ export interface ArtistInfoPage_albums_items {
 
 export interface ArtistInfoPage_albums {
   href: string | null;
-  limit: number;
-  next: string;
-  offset: number;
+  limit: number | null;
+  next: string | null;
+  offset: number | null;
   total: number;
   items: ArtistInfoPage_albums_items[] | null;
 }
