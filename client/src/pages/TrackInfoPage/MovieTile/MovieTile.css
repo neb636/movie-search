@@ -1,0 +1,23 @@
+.MovieTile {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 20px;
+}
+
+.MovieTile__movie-image {
+  width: 100px;
+  border-radius: 5px;
+}
+
+.MovieTile__right-section {
+  margin-left: 15px;
+}
+
+.MovieTile__score {
+  padding: 5px;
+  background-color: #feb833;
+  color: #fff;
+  border-radius: 5px;
+}

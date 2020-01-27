@@ -1,15 +1,21 @@
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
+import { useRandomFallbackGradient } from '@common/hooks/use-random-fallback-gradient';
+import './ImageWithFallback.css';
 
 type Props = {
   src: string | undefined;
-  fallback: ReactNode | Element[];
   alt: string;
+  fallbackText: string;
   [key: string]: any;
 };
 
 const ImageWithFallback = (props: Props) => {
-  const { fallback, src, alt, className, ...rest } = props;
+  const { fallbackText, src, alt, className, ...rest } = props;
   const [loadError, setLoadError] = useState(!src);
+  const fallbackGradient = useRandomFallbackGradient();
+  const style = {
+    backgroundImage: fallbackGradient
+  };
 
   const onError = () => {
     console.log('ERROR');
@@ -17,7 +23,13 @@ const ImageWithFallback = (props: Props) => {
   };
 
   if (loadError) {
-    return <div className={className}>{fallback}</div>;
+    const fallbackLetter = fallbackText ? fallbackText.charAt(0) : '?';
+
+    return (
+      <div className={`${className} ImageWithFallback__fallback`} style={style}>
+        {fallbackLetter}
+      </div>
+    );
   }
 
   return <img alt={alt} src={src} onError={onError} className={className} {...rest} />;

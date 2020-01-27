@@ -1,31 +1,26 @@
 import React from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import ImageWithFallback from '@common/components/ImageWithFallback/ImageWithFallback';
+import { useParams } from 'react-router-dom';
 import './TrackInfoPage.css';
-import BackCircleIcon from '@common/components/BackCircleIcon/BackCircleIcon';
 import { useTrackInfoPageQuery } from '@pages/TrackInfoPage/use-track-info-page-query';
+import InfoPageWrapper from '@common/components/InfoPageWrapper/InfoPageWrapper';
+import { useTrackMovieListQuery } from '@pages/TrackInfoPage/use-track-movie-list-query';
+import { MovieTile } from '@pages/TrackInfoPage/MovieTile/MovieTile';
+import Spinner from '@common/components/Spinner/Spinner';
 
 const TrackInfoPage = () => {
   const { spotifyTrackId } = useParams<{ spotifyTrackId?: string }>();
-  const history = useHistory();
   const { loading, error, track } = useTrackInfoPageQuery(spotifyTrackId || '');
-  const fallbackLetter = track?.name?.charAt(0) || '?';
+  const { loading: movieTracksLoading, movies } = useTrackMovieListQuery(track?.name, track?.artistName);
+
+  console.log('movies', movies);
 
   if (!loading && track) {
     return (
-      <div className="TrackInfoPage">
-        <BackCircleIcon className="TrackInfoPage__back-button" onClick={() => history.goBack()} />
-        <div className="TrackInfoPage__track-wrapper">
-          <ImageWithFallback
-            className="TrackInfoPage__track-image"
-            src={track.mainImage}
-            fallback={<div className="TrackInfoPage__image-fallback">{fallbackLetter}</div>}
-            alt="Track Fallback Image"
-          />
-
-          <div className="TrackInfoPage__track-info">
-            <h2 className="TrackInfoPage__track-name">{track.name}</h2>
-
+      <InfoPageWrapper
+        title={track.name}
+        heroImageSrc={track.mainImage}
+        topRightSection={
+          <div>
             <div className="TrackInfoPage__track-by-wrapper">By {track.artistName}</div>
 
             {track.previewUrl && (
@@ -35,8 +30,22 @@ const TrackInfoPage = () => {
               </audio>
             )}
           </div>
+        }
+      >
+        <div>
+          <h3 className="TrackInfoPage__movie-list-title">Appears In</h3>
+
+          {movieTracksLoading && <Spinner className="TrackInfoPage__spinner" />}
+
+          {!movieTracksLoading && !!movies && !!movies.length && (
+            <div className="TrackInfoPage__movie-list">
+              {movies?.map(movie => (
+                <MovieTile movie={movie} key={movie.title} />
+              ))}
+            </div>
+          )}
         </div>
-      </div>
+      </InfoPageWrapper>
     );
   }
 

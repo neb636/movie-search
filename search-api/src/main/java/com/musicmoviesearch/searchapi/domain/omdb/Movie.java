@@ -1,34 +1,55 @@
 package com.musicmoviesearch.searchapi.domain.omdb;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class Movie {
+    @JsonProperty("title")
     final private String Title;
+    @JsonProperty("year")
     final private String Year;
+    @JsonProperty("rated")
     final private String Rated;
+    @JsonProperty("released")
     final private String Released;
+    @JsonProperty("runtime")
     final private String Runtime;
+    @JsonProperty("genre")
     final private String Genre;
+    @JsonProperty("director")
     final private String Director;
+    @JsonProperty("writer")
     final private String Writer;
+    @JsonProperty("actors")
     final private String Actors;
+    @JsonProperty("plot")
     final private String Plot;
+    @JsonProperty("language")
     final private String Language;
+    @JsonProperty("country")
     final private String Country;
+    @JsonProperty("awards")
     final private String Awards;
+    @JsonProperty("poster")
     final private String Poster;
+    @JsonProperty("ratings")
     final private List<Rating> Ratings;
+    @JsonProperty("metascore")
     final private String Metascore;
     final private String imdbRating;
     final private String imdbVotes;
     final private String imdbID;
+    @JsonProperty("type")
     final private String Type;
-    final private String DVD;
+    @JsonProperty("boxOffice")
     final private String BoxOffice;
+    @JsonProperty("production")
     final private String Production;
+    @JsonProperty("website")
     final private String Website;
 
-    public Movie(String Title, String Year, String Rated, String Released, String Runtime, String Genre, String Director, String Writer, String Actors, String Plot, String Language, String Country, String Awards, String Poster, List<Rating> Ratings, String Metascore, String imdbRating, String imdbVotes, String imdbID, String Type, String DVD, String BoxOffice, String Production, String Website) {
+    public Movie(String Title, String Year, String Rated, String Released, String Runtime, String Genre, String Director, String Writer, String Actors, String Plot, String Language, String Country, String Awards, String Poster, List<Rating> Ratings, String Metascore, String imdbRating, String imdbVotes, String imdbID, String Type, String BoxOffice, String Production, String Website) {
         this.Title = Title;
         this.Year = Year;
         this.Rated = Rated;
@@ -49,7 +70,6 @@ public class Movie {
         this.imdbVotes = imdbVotes;
         this.imdbID = imdbID;
         this.Type = Type;
-        this.DVD = DVD;
         this.BoxOffice = BoxOffice;
         this.Production = Production;
         this.Website = Website;
@@ -133,10 +153,6 @@ public class Movie {
 
     public String getType() {
         return Type;
-    }
-
-    public String getDVD() {
-        return DVD;
     }
 
     public String getBoxOffice() {

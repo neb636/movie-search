@@ -6,6 +6,8 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
+
 @Service
 public class OMDBService {
     private final String apiKey;
@@ -21,8 +23,14 @@ public class OMDBService {
         this.apiKey = apiKey;
     }
 
-    public Movie getMovieByTitle(String title) {
-        return restTemplate.getForObject(this.getQueryString() + "&t=" + title, Movie.class);
+    public Movie getMovieByTitle(String title) throws IOException {
+        Movie movie = restTemplate.getForObject(this.getQueryString() + "&t=" + title, Movie.class);
+
+        if (movie != null && movie.getTitle() != null) {
+            return movie;
+        }
+
+        throw new IOException("Movie does not exist");
     }
 
     private String getQueryString() {

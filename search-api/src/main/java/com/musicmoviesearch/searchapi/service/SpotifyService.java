@@ -95,11 +95,43 @@ public class SpotifyService {
         return resultsList;
     }
 
+    public List<Track> searchTracksList(String trackName, String artistName) {
+        List<PagingDto<Track>> initialResultsList = new ArrayList<>();
+        List<PagingDto<Track>> pagingResultsList = fetchSearchTracksListRecursive(trackName, artistName, initialResultsList);
+        List<Track> resultsList = new ArrayList<>();
+
+        pagingResultsList.forEach(result -> {
+            resultsList.addAll(result.getItems());
+        });
+
+        return resultsList;
+    }
+
+    private List<PagingDto<Track>> fetchSearchTracksListRecursive(String trackName, String artistName, List<PagingDto<Track>> resultsList) {
+        final Integer offset = getOffset(resultsList);
+        final SpotifyApi spotifyApi = getSpotifyClient();
+        final SearchItemRequest getSearchResultsRequest = spotifyApi.searchItem(trackName + ' ' + artistName, "track" ).offset(offset).limit(50).build();
+
+        try {
+            SearchResult searchResults = getSearchResultsRequest.execute();
+            PagingDto<Track> tracks = modelMapper.map(searchResults.getTracks(), PagingDto.class);
+
+            resultsList.add(tracks);
+
+            if (!tracks.getOffset().equals(tracks.getTotal())) {
+                fetchSearchTracksListRecursive(trackName, artistName, resultsList);
+            }
+
+            return resultsList;
+        } catch (IOException | SpotifyWebApiException e) {
+            throw new SearchRequestException(e.getMessage());
+        }
+    }
+
     private List<PagingDto<AlbumSimplified>> fetchArtistsAlbumsRecursive(String artistId, List<PagingDto<AlbumSimplified>> resultsList) {
         final Integer offset = getOffset(resultsList);
         final SpotifyApi spotifyApi = getSpotifyClient();
         final GetArtistsAlbumsRequest getArtistsAlbums = spotifyApi.getArtistsAlbums(artistId).offset(offset).limit(50).build();
-
         try {
             Paging<AlbumSimplified> results = getArtistsAlbums.execute();
             PagingDto<AlbumSimplified> artistsAlbums = modelMapper.map(results,PagingDto.class);
@@ -115,13 +147,13 @@ public class SpotifyService {
         }
     }
 
-    private Integer getOffset(List<PagingDto<AlbumSimplified>> resultsList) {
+    private <T> Integer getOffset(List<PagingDto<T>> resultsList) {
 
         if (resultsList.isEmpty()) {
             return 0;
         }
 
-        final PagingDto<AlbumSimplified> lastItem = resultsList.get(resultsList.size() - 1);
+        final PagingDto<T> lastItem = resultsList.get(resultsList.size() - 1);
         final Integer total = lastItem.getTotal();
         final Integer limit = lastItem.getLimit();
         final Integer offset = lastItem.getOffset();

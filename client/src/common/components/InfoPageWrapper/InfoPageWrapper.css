@@ -1,0 +1,39 @@
+.InfoPageWrapper {
+  margin-bottom: 50px;
+}
+
+.InfoPageWrapper__back-button {
+  position: relative;
+  left: -35px;
+  margin-bottom: 20px;
+}
+
+.InfoPageWrapper__image-fallback {
+  background-color: #dbdee8;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 600%;
+}
+
+.InfoPageWrapper__track-image {
+  width: 375px;
+  height: 375px;
+  border-radius: 20px;
+}
+
+.InfoPageWrapper__title {
+  font-size: 30px;
+}
+
+.InfoPageWrapper__top-section {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.InfoPageWrapper__top-right-section {
+  margin-left: 40px;
+}

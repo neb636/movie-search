@@ -37,3 +37,14 @@
   left: -35px;
   margin-bottom: 20px;
 }
+
+.TrackInfoPage__movie-list-item {
+  padding: 10px 0;
+}
+
+.TrackInfoPage__movie-list-title {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: var(--dark-text);
+  font-weight: 700;
+}

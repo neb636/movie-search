@@ -21,6 +21,10 @@ public class SpotifyQuery implements GraphQLQueryResolver {
         return spotifyService.getTrack(id);
     }
 
+    public List<Track> getTracksList(String trackName, String artistName) {
+        return spotifyService.searchTracksList(trackName, artistName);
+    }
+
     public Artist getArtist(String id) {
         return spotifyService.getArtist(id);
     }

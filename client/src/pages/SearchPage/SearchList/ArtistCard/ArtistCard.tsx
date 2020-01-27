@@ -4,31 +4,16 @@ import ImageWithFallback from '@common/components/ImageWithFallback/ImageWithFal
 import { Routes } from '@routes/routes';
 import { useHistory } from 'react-router-dom';
 import { ArtistItem } from '@common/mappers/artist-mapper';
-import { useRandomFallbackGradient } from '@common/hooks/use-random-fallback-gradient';
 
 type Props = { artist: ArtistItem };
 
 const ArtistCard = ({ artist }: Props) => {
   const history = useHistory();
-  const { mainImage, name, type, id } = artist;
-  const fallbackLetter = name ? name.charAt(0) : '?';
-  const fallbackGradient = useRandomFallbackGradient();
-  const style = {
-    backgroundImage: fallbackGradient
-  };
+  const { mainImage, name, id } = artist;
 
   return (
     <div className="ArtistCard" onClick={() => history.push(Routes.artist.getLink(id))}>
-      <ImageWithFallback
-        className="ArtistCard__image"
-        src={mainImage}
-        alt="Artist cover photo"
-        fallback={
-          <div className="ArtistCard__image-fallback" style={style}>
-            {fallbackLetter}
-          </div>
-        }
-      />
+      <ImageWithFallback className="ArtistCard__image" src={mainImage} alt="Artist cover photo" fallbackText={name} />
 
       <h5 className="ArtistCard__name">{name}</h5>
     </div>
