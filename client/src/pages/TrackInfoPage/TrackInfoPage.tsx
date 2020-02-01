@@ -12,8 +12,6 @@ const TrackInfoPage = () => {
   const { loading, error, track } = useTrackInfoPageQuery(spotifyTrackId || '');
   const { loading: movieTracksLoading, movies } = useTrackMovieListQuery(track?.name, track?.artistName);
 
-  console.log('movies', movies);
-
   if (!loading && track) {
     return (
       <InfoPageWrapper

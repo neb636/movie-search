@@ -18,7 +18,6 @@ const ImageWithFallback = (props: Props) => {
   };
 
   const onError = () => {
-    console.log('ERROR');
     setLoadError(true);
   };
 

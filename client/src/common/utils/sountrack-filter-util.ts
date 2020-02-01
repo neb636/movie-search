@@ -10,7 +10,7 @@ export const filterSoundtrackAlbums = (albums: AlbumItem[]) => {
 export const parseName = (name: string) => {
   const indexOfFirst = name.search(/[-(\[]/);
 
-  if (indexOfFirst) {
+  if (indexOfFirst !== -1) {
     return name.substring(0, indexOfFirst).trim();
   }
 
